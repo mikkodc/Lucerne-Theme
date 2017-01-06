@@ -1,0 +1,10 @@
+footer#main-footer {
+  background-color: $color__darkBlue;
+  color: rgba(255,255,255,0.25);
+  font-size: 11px;
+  padding: 35px 0 50px;;
+
+  p {
+    margin-bottom: 0;
+  }
+}

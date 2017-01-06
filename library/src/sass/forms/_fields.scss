@@ -1,0 +1,18 @@
+.form-title {
+  font-weight: 400;
+  margin-bottom: 40px;
+}
+input:not([type="submit"]) {
+  border-radius: 0px;
+}
+input[type="submit"] {
+  @include button;
+  font-size: 18px;
+  background-color: $color__darkBlue;
+  position: relative;
+
+  &:hover {
+    background-color: #1f3a57;
+    color: $color__white;
+  }
+}

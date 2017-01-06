@@ -1,0 +1,22 @@
+@mixin transition {
+    transition: all 0.3s ease-out;
+}
+@mixin button {
+    background-color: transparent;
+    box-shadow: none;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 0;
+    @include transition;
+    text-shadow: none;
+    color: #fff;
+
+    &:hover,
+    &:focus,
+    &:active,
+    &:visited {
+      color: #fff;
+      border: none;
+      box-shadow: none;
+    }
+}

@@ -1,0 +1,54 @@
+//Login Form
+.login-form {
+  height: calc(100vh - 350px);
+  position: relative;
+  min-height: 350px;
+
+  .login-msg {
+    background-color: $color__orange;
+    color: $color__white;
+    padding: 10px;
+    margin-bottom: 25px;
+  }
+}
+
+.site-form {
+  text-align: center;
+
+  a {
+    display: block;
+    margin-top: 20px;
+    color: $color__darkBlue;
+    text-decoration: underline;
+  }
+
+  form {
+    max-width: 350px;
+
+    p:not(:last-child) {
+      display: inline-block;
+      width: 100%;
+      margin-bottom: 15px;
+    }
+
+    label,
+    input:not([type="submit"]) {
+      width: 60%;
+      float: left;
+    }
+
+    label {
+      text-transform: uppercase;
+      text-align: right;
+      padding-right: 15px;
+      width: 40%
+    }
+  }
+}
+
+//Linked Article
+.linked-frame {
+  width: 100%;
+  height: calc(100vh - 132px);
+  border: 0;
+}

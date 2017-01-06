@@ -1,0 +1,152 @@
+html {
+  overflow-x: hidden;
+}
+body {
+  width: 100%;
+  height: 100%;
+  font-size: 14px;
+  font-family: 'Open Sans', sans-serif;
+  min-height: 100vh;
+}
+
+//Preloader Styles
+.preload-container {
+  position: relative;
+  text-align: center;
+}
+#preloader{
+  display: none;
+  position: absolute;
+  z-index: 1;
+  width: 100%;
+  background-color: rgba(255,255,255,0.9);
+  height: 100%;
+  @include transition;
+}
+#preload-gif {
+}
+
+.affix {
+  top: 10px;
+  left: 0;
+  right: 0;
+  z-index: 99;
+}
+.content-pad {
+  padding: 40px 0;
+}
+.mb-40 {
+  margin-bottom: 40px;
+}
+.center-content {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+.glyphicon {
+  margin-right: 5px;
+}
+ul.inline-list {
+  margin: 0;
+  list-style: none;
+  padding-left: 0;
+
+  li {
+    display: inline-block;
+  }
+}
+.section-title {
+  font-weight: 700;
+  color: $color__darkBlue;
+  margin-bottom: 15px;
+}
+.text-light {
+  color: $color__white;
+}
+
+.btn-default {
+  @include button;
+  background-color: $color__darkBlue;
+
+  &:visited {
+    background-color: $color__darkBlue;
+  }
+
+  &:hover,
+  &:focus,
+  &:active {
+    background-color: #1f3a57;
+    color: $color__white;
+  }
+}
+.btn-primary {
+  @include button;
+  background-color: $color__orange;
+
+  &:visited {
+    background-color: $color__orange;
+  }
+
+  &:hover,
+  &:focus,
+  &:active {
+    background-color: #fdc648;
+  }
+}
+
+//Global Article Styles
+.article-item {
+  max-width: 470px;
+  display: block;
+  margin: 0 auto;
+  margin-bottom: 30px;
+
+  a {
+    position: relative;
+    display: block;
+    overflow: hidden;
+
+    img {
+      filter: brightness(0.8);
+      @include transition;
+    }
+
+    .meta-overlay {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      background-color: $color__lightGray;
+      padding: 20px;
+      color: $color__black;
+    }
+
+    &:hover img {
+      filter: brightness(1);
+    }
+  }
+
+  .ajax-link {
+    cursor: pointer;
+  }
+
+  .article-title a {
+    margin: 10px 0 20px;
+    color: $color__darkBlue;
+    font-weight: 600;
+    text-transform: uppercase;
+
+    &:hover {
+      text-decoration: none;
+    }
+  }
+
+  h4.article-title a {
+    font-size: 18px;
+    font-weight: 700;
+    margin-top: 10px;
+    text-transform: none;
+  }
+}

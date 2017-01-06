@@ -1,0 +1,51 @@
+{
+  "devDependencies": {
+    "autoprefixer": "^6.5.3",
+    "bootstrap-sass": "^3.3.7",
+    "bower": "^1.8.0",
+    "browser-sync": "^2.18.5",
+    "gulp": "^3.9.1",
+    "gulp-autoprefixer": "^3.1.1",
+    "gulp-concat": "^2.6.1",
+    "gulp-imagemin": "^3.1.1",
+    "gulp-jshint": "^2.0.4",
+    "gulp-load-plugins": "^1.4.0",
+    "gulp-newer": "^1.3.0",
+    "gulp-notify": "^2.2.0",
+    "gulp-plumber": "^1.1.0",
+    "gulp-rename": "^1.2.2",
+    "gulp-sass": "^2.3.2",
+    "gulp-sourcemaps": "^1.9.1",
+    "gulp-uglify": "^2.0.0",
+    "gulp-util": "^3.0.7",
+    "gulp-watch": "^4.3.11"
+  },
+  "name": "Lucerne",
+  "description": "Lucerne Theme",
+  "version": "1.0.0",
+  "main": "gulpfile.js",
+  "dependencies": {
+    "autoprefixer": "^6.5.3",
+    "browser-sync": "^2.18.5",
+    "gulp": "^3.9.1",
+    "gulp-concat": "^2.6.1",
+    "gulp-imagemin": "^3.1.1",
+    "gulp-load-plugins": "^1.4.0",
+    "gulp-notify": "^2.2.0",
+    "gulp-plumber": "^1.1.0",
+    "gulp-rename": "^1.2.2",
+    "gulp-sass": "^2.3.2",
+    "gulp-sourcemaps": "^1.9.1",
+    "gulp-uglify": "^2.0.0",
+    "gulp-util": "^3.0.7",
+    "gulp-watch": "^4.3.11"
+  },
+  "scripts": {
+    "test": ""
+  },
+  "keywords": [
+    "August99"
+  ],
+  "author": "Mikko de Castro <mikkodecastro@ymail.com>",
+  "license": "ISC"
+}

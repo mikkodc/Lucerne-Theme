@@ -1,0 +1,20 @@
+{
+  "name": "Lucerne",
+  "description": "Lucerne Theme",
+  "main": "index.php",
+  "authors": [
+    "Mikko de Castro <mikkodecastro@ymail.com>"
+  ],
+  "license": "ISC",
+  "keywords": [
+    "August99"
+  ],
+  "homepage": "",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}
