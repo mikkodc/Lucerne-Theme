@@ -107,6 +107,7 @@ ul.inline-list {
   margin: 0 auto;
   margin-bottom: 30px;
 
+
   a {
     position: relative;
     display: block;
@@ -134,10 +135,12 @@ ul.inline-list {
   }
 
   .article-title a {
-    margin: 10px 0 20px;
     color: $color__darkBlue;
     font-weight: 600;
-    text-transform: uppercase;
+    width:100%;
+    white-space: nowrap;
+    overflow:hidden;
+    text-overflow: ellipsis;
 
     &:hover {
       text-decoration: none;
@@ -149,5 +152,11 @@ ul.inline-list {
     font-weight: 700;
     margin-top: 10px;
     text-transform: none;
+  }
+
+  .article-excerpt {
+    height: 4.2em;
+    text-overflow: ellipsis;
+    overflow: hidden;
   }
 }
