@@ -128,7 +128,7 @@ $queried_post = get_post($post_id); ?>
               <h3 class="author-name"><?php echo the_author_meta('user_firstname', $queried_post->post_author); ?>
                 <?php echo the_author_meta('user_lastname', $queried_post->post_author); ?></h3>
               <h3 class="author-title"><?php the_field('author_title', 'user_'. $queried_post->post_author) ?></h3>
-              <span class="glyphicon glyphicon-envelope"></span> <a href="mailto:<?php echo the_author_meta('user_email', $queried_post->post_author); ?>">Email [<?php echo the_author_meta('user_firstname', $queried_post->post_author); ?>]</a>
+              <span class="glyphicon glyphicon-envelope"></span> <a href="mailto:<?php echo the_author_meta('user_email', $queried_post->post_author); ?>">Email <?php echo the_author_meta('user_firstname', $queried_post->post_author); ?></a>
             </div>
             <!-- End Author Details -->
 
