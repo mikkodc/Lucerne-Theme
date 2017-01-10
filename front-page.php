@@ -75,7 +75,7 @@ get_header(); ?>
           $hiterms = get_terms( 'category', array('orderby' => 'name', 'parent' => 0));
 
       			foreach ( $hiterms as $hiterm ) { ?>
-              <li data-term="<?php echo $hiterm->term_id; ?>"><a href="#"><?php echo $hiterm->name; ?></a>
+              <li><a href="#" data-term="<?php echo $hiterm->term_id; ?>"><?php echo $hiterm->name; ?></a>
 
                 <?php //Child Terms
                 $loterms = get_terms('category', array('orderby' => 'name', 'parent' => $hiterm->term_id));
@@ -86,7 +86,7 @@ get_header(); ?>
                   <ul>
                   <?php
                     foreach ( $loterms as $loterm ) { ?>
-                        <li data-term="<?php echo $loterm->term_id; ?>"><a href="#"><?php echo $loterm->name; ?></a></li>
+                        <li><a href="#" data-term="<?php echo $loterm->term_id; ?>"><?php echo $loterm->name; ?></a></li>
                     <?php } //End of Child Terms ?>
                   </ul>
 
@@ -94,7 +94,7 @@ get_header(); ?>
               </li>
       			<?php } //End of Parent Terms ?>
         </ul>
-        <div class="pull-right">
+        <div class="pull-right hidden-xs">
           <?php get_search_form(); ?>
         </div>
     </div>
@@ -110,7 +110,7 @@ get_header(); ?>
       </div>
       <!-- End Preloader -->
 
-      <div class="other-articles content-pad clearfix"></div>
+      <div class="other-articles content-pad clearfix row"></div>
       <span class="load-more">Load More</span>
       <!-- <div id="preload-gif">
         <img src="<?php echo bloginfo('template_directory'); ?>/library/src/img/ajax-loader.gif" alt="Loading">

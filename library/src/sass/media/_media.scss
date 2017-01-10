@@ -21,6 +21,7 @@
 }
 
 @media screen and (min-width: 992px) {
+
   .featured-articles {
 
     .large {
@@ -117,27 +118,52 @@
 //Smaller than 767px
 @media screen and (max-width: 767px) {
 
+  * {
+    font-size: 100%!important;
+  }
+
+  //Header
+  #reading-list {
+    width: 100%;
+  }
+
   .top-bar {
-    padding-right: 0;
-    position: static;
+    display: none;
   }
 
-  .affix {
-   position: static;
-   width: auto;
-   top: 0;
-  }
-
-  #main-header {
+  header#main-header {
     margin-top: 0!important;
+
+    .logo-bar {
+      padding: 20px 0;
+
+      a {
+        max-width: 200px;
+      }
+    }
 
     .title-bar {
 
       #back {
-        width: 100%;
-        margin-bottom: 10px;
-        text-align: center;
+        margin: 0;
+
+        .hidden-xs {
+          display: none;
+        }
       }
+
+      a {
+        color: $color__white;
+        cursor: pointer;
+      }
+    }
+  }
+
+  .cat-bar {
+    &.affix {
+     position: static;
+     width: auto;
+     top: 0;
     }
   }
 
@@ -145,9 +171,14 @@
 
     .meta-title {
       font-size: 20px;
-      height: 2.3em;
+      height: 2.1em;
       overflow: hidden;
       text-overflow: ellipsis;
+    }
+
+    .meta-date {
+      font-size: 12px!important;
+      width: 100%;
     }
 
     .small {
@@ -161,6 +192,11 @@
   }
 
   .cat-bar {
+
+    #filter-btn {
+      display: inline-block;
+      width: auto;
+    }
 
     & > * {
       float: none!important;
@@ -187,8 +223,31 @@
     }
   }
 
-  .linked-article .author-meta .author-info .author-name {
-    margin-top: 10px;
-  }
+  .linked-article {
 
+    .main-intro-content {
+
+      .post-meta {
+
+        .meta-tags {
+          margin-left: 0;
+          margin-top: 20px;
+        }
+      }
+
+      .article-options {
+
+        a, button {
+          width: 49%;
+          float: left;
+          font-size: 14px!important;
+          padding: 5px;
+        }
+
+        & > *:last-child {
+          margin-left: 2%;
+        }
+      }
+    }
+  }
 }

@@ -62,12 +62,25 @@
 			</div>
 			<div class="title-bar text-center">
 				<div class="container-fluid">
-					<div class="col-md-4 text-left">
-						<a id="back"><span class="glyphicon glyphicon-chevron-left"></span>BACK</a>
+					<div class="row">
+						<div class="col-xs-4 col-md-4 text-left">
+							<a id="back"><span class="glyphicon glyphicon-chevron-left"></span><span class="hidden-xs">BACK</span></a>
+						</div>
+						<div class="col-xs-4 col-md-4">
+							<h1>Investor Library</h1>
+						</div>
+						<div class="col-xs-4 visible-xs text-center">
+							<ul class="inline-list">
+								<li><a class="search-icon"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></a></li>
+								<li><a class="reading-link"><span class="glyphicon glyphicon-list" aria-hidden="true"></span></a></li>
+							</ul>
+						</div>
 					</div>
-					<div class="col-md-4">
-						<h1>Investor Library</h1>
-					</div>
+				</div>
+			</div>
+			<div class="toggle-search">
+				<div class="container-fluid">
+					<?php get_search_form(); ?>
 				</div>
 			</div>
 		</header>

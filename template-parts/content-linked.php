@@ -8,7 +8,7 @@ $queried_post = get_post($post_id); ?>
   <?php $current_article = $queried_post->ID; ?>
   <div class="col-md-8 large" style="background: url('<?php echo get_the_post_thumbnail_url($current_article); ?>') center no-repeat">
   </div>
-  <div class="col-md-4 small article-thumb">
+  <div class="col-md-4 hidden-xs small article-thumb">
     <h2 class="section-title">
       Related Articles
     </h2>
@@ -94,7 +94,7 @@ $queried_post = get_post($post_id); ?>
             	"
             );
             ob_start(); ?>
-            <button type="button" class="btn btn-default remove-to-list" data-id="<?php echo $post_id ?>"><span class="glyphicon glyphicon-minus"></span> Remove from List</button>
+            <button type="button" class="btn btn-default remove-to-list" data-id="<?php echo $post_id ?>"><span class="glyphicon glyphicon-minus"></span> Reading List</button>
             <?php $readingButton = ob_get_clean();
 
             if($checkifonreadinglist) {
@@ -118,17 +118,17 @@ $queried_post = get_post($post_id); ?>
           <div class="row">
 
             <!-- Start Author Image -->
-            <div class="col-md-4">
+            <div class="col-xs-5 col-md-4">
               <?php echo get_avatar( get_the_author_meta( 'ID' ) , 160 ); ?>
             </div>
             <!-- End Author Image -->
 
             <!-- Start Author Details -->
-            <div class="col-md-8">
+            <div class="col-xs-7 col-md-8">
               <h3 class="author-name"><?php echo the_author_meta('user_firstname', $queried_post->post_author); ?>
                 <?php echo the_author_meta('user_lastname', $queried_post->post_author); ?></h3>
               <h3 class="author-title"><?php the_field('author_title', 'user_'. $queried_post->post_author) ?></h3>
-              <span class="glyphicon glyphicon-envelope"></span> <a href="mailto:<?php echo the_author_meta('user_email', $queried_post->post_author); ?>">Email <?php echo the_author_meta('user_firstname', $queried_post->post_author); ?></a>
+              <span class="glyphicon glyphicon-envelope"></span> <a href="mailto:<?php echo the_author_meta('user_email', $queried_post->post_author); ?>">Email [<?php echo the_author_meta('user_firstname', $queried_post->post_author); ?>]</a>
             </div>
             <!-- End Author Details -->
 
@@ -166,6 +166,32 @@ $queried_post = get_post($post_id); ?>
         </div>
       </div>
       <!-- End Related Author Posts -->
+
+      <div class="visible-xs small article-thumb">
+        <h2 class="section-title">
+          Related Articles
+        </h2>
+        <?php
+        $args = array(
+          'post_type' => 'post',
+          'posts_per_page' => '2',
+          'post__not_in' => array($current_article),
+
+        );
+        $query = get_posts($args);
+        foreach($query as $queries) { ?>
+          <?php //echo var_dump($queries); ?>
+          <a class="ajax-link" data-id="<?php echo $queries->ID; ?>">
+            <img src="<?php echo get_the_post_thumbnail_url($queries->ID); ?>" alt="" class="img-responsive">
+            <div class="meta-overlay">
+              <div class="meta-date">
+                <?php echo mysql2date('j F, Y', $queries->post_date); ?>
+              </div>
+            </div>
+          </a>
+          <h2 class="article-title"><?php echo $queries->post_title; ?></h2>
+        <?php } ?>
+      </div>
 
     </div><!-- End Content Pad -->
   </div> <!-- End Container -->

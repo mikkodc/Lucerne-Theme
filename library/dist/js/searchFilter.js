@@ -32,7 +32,7 @@ $(document).on( 'submit', '.search-form', function() {
 
 //Category Filter
 $(document).ready(function(){
-  $("body").on("click",".cat-bar ul li",function(){
+  $("body").on("click",".cat-bar ul li a",function(){
 		var filter = $(this).data('term');
 
     $.ajax({
