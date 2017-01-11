@@ -20,7 +20,7 @@ $(document).on( 'submit', '.search-form', function() {
           $input.prop('disabled', false);
           $content.html( response );
           $('#preloader').fadeOut();
-          console.log( response );
+          // console.log( response );
         },
         error: function(errorThrown){
           console.log(errorThrown);

@@ -118,13 +118,21 @@
 //Smaller than 767px
 @media screen and (max-width: 767px) {
 
-  * {
-    font-size: 100%!important;
+  body {
+    font-size: 14px;
   }
+
+  h1 {
+    font-size: 1.4em;
+  }
+
 
   //Header
   #reading-list {
     width: 100%;
+    &.close {
+      margin-right: calc(-100vw - 20px);
+    }
   }
 
   .top-bar {
@@ -169,25 +177,37 @@
 
   .featured-articles {
 
-    .meta-title {
-      font-size: 20px;
-      height: 2.1em;
-      overflow: hidden;
-      text-overflow: ellipsis;
+    .row {
+      .large,
+      .small {
+        .meta-title {
+          @include multi-line(16px, 1.2, 2);
+        }
+      }
+
+      .small {
+        max-height: 200px!important;
+
+        a {
+          .meta-overlay {
+            .meta-title {
+              @include multi-line(16px, 1.2, 2);
+            }
+          }
+        }
+
+        img {
+          height: 200px;
+          width: auto;
+          max-width: none;
+          min-width: 100%;
+        }
+      }
     }
 
     .meta-date {
       font-size: 12px!important;
       width: 100%;
-    }
-
-    .small {
-      max-height: 200px!important;
-
-      img {
-        min-height: 200px;
-        width: 100%;
-      }
     }
   }
 
@@ -247,6 +267,12 @@
         & > *:last-child {
           margin-left: 2%;
         }
+      }
+    }
+
+    .small {
+      a {
+        max-height: 385px;
       }
     }
   }

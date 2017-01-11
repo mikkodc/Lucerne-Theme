@@ -102,7 +102,6 @@ ul.inline-list {
 
 //Global Article Styles
 .article-item {
-  max-width: 470px;
   display: block;
   margin: 0 auto;
   margin-bottom: 30px;
@@ -111,10 +110,10 @@ ul.inline-list {
   a {
     position: relative;
     display: block;
-    overflow: hidden;
 
     img {
       filter: brightness(0.8);
+      min-width: 100%;
       @include transition;
     }
 
@@ -137,10 +136,7 @@ ul.inline-list {
   .article-title a {
     color: $color__darkBlue;
     font-weight: 600;
-    width:100%;
-    white-space: nowrap;
-    overflow:hidden;
-    text-overflow: ellipsis;
+    @include multi-line(24px, 1.2, 2);
 
     &:hover {
       text-decoration: none;
@@ -148,7 +144,7 @@ ul.inline-list {
   }
 
   h4.article-title a {
-    font-size: 18px;
+    @include multi-line(18px, 1.2, 2);
     font-weight: 700;
     margin-top: 10px;
     text-transform: none;

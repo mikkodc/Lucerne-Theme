@@ -69,8 +69,8 @@
 						<div class="col-xs-4 col-md-4">
 							<h1>Investor Library</h1>
 						</div>
-						<div class="col-xs-4 visible-xs text-center">
-							<ul class="inline-list">
+						<div class="col-xs-4 visible-xs mobile-icons">
+							<ul class="inline-list pull-right">
 								<li><a class="search-icon"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></a></li>
 								<li><a class="reading-link"><span class="glyphicon glyphicon-list" aria-hidden="true"></span></a></li>
 							</ul>

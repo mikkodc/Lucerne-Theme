@@ -81,7 +81,16 @@ header#main-header {
       font-weight: 700;
       margin: 0;
     }
+
+    .mobile-icons {
+      ul {
+        li:not(:last-child) {
+          margin-right: 5px;
+        }
+      }
+    }
   }
+
   .toggle-search {
     border-top: 1px solid rgba(255,255,255,0.1);
     display: none;
@@ -157,6 +166,7 @@ header#main-header {
       right: 0;
       top: 35%;
       transform: translateY(-50%);
+      text-align: center;
 
       a {
         color: $color__white;

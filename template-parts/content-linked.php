@@ -8,7 +8,7 @@ $queried_post = get_post($post_id); ?>
   <?php $current_article = $queried_post->ID; ?>
   <div class="col-md-8 large" style="background: url('<?php echo get_the_post_thumbnail_url($current_article); ?>') center no-repeat">
   </div>
-  <div class="col-md-4 hidden-xs small article-thumb">
+  <div class="col-md-4 hidden-xs hidden-sm small article-thumb">
     <h2 class="section-title">
       Related Articles
     </h2>
@@ -86,12 +86,12 @@ $queried_post = get_post($post_id); ?>
             $current_user_id = $user_inserted->ID;
 
             $checkifonreadinglist = $wpdb->get_var(
-            	"
-            	SELECT count(id)
-            	FROM wp_reading_list
-            	WHERE user_id = '".$current_user_id. "'
-            		AND post_id = '".$post_id."'
-            	"
+              "
+              SELECT count(id)
+              FROM wp_reading_list
+              WHERE user_id = '".$current_user_id. "'
+                AND post_id = '".$post_id."'
+              "
             );
             ob_start(); ?>
             <button type="button" class="btn btn-default remove-to-list" data-id="<?php echo $post_id ?>"><span class="glyphicon glyphicon-minus"></span> Reading List</button>
@@ -150,7 +150,7 @@ $queried_post = get_post($post_id); ?>
           );
           $articleQuery = get_posts($args);
           foreach($articleQuery as $artQueries) { ?>
-            <div class="col-md-4 article-item">
+            <div class="col-sm-6 col-md-4 article-item">
               <a class="ajax-link" data-id="<?php echo $artQueries->ID ?>">
                 <img src="<?php echo get_the_post_thumbnail_url($artQueries->ID, 'article-thumb'); ?>" alt="" class="img-responsive">
                 <div class="meta-overlay">
@@ -167,10 +167,11 @@ $queried_post = get_post($post_id); ?>
       </div>
       <!-- End Related Author Posts -->
 
-      <div class="visible-xs small article-thumb">
+      <div class="visible-xs visible-sm small article-thumb">
         <h2 class="section-title">
           Related Articles
         </h2>
+        <div class="row">
         <?php
         $args = array(
           'post_type' => 'post',
@@ -181,16 +182,19 @@ $queried_post = get_post($post_id); ?>
         $query = get_posts($args);
         foreach($query as $queries) { ?>
           <?php //echo var_dump($queries); ?>
-          <a class="ajax-link" data-id="<?php echo $queries->ID; ?>">
+          <div class="col-sm-6">
+            <a class="ajax-link" data-id="<?php echo $queries->ID; ?>">
             <img src="<?php echo get_the_post_thumbnail_url($queries->ID); ?>" alt="" class="img-responsive">
             <div class="meta-overlay">
               <div class="meta-date">
                 <?php echo mysql2date('j F, Y', $queries->post_date); ?>
               </div>
             </div>
-          </a>
-          <h2 class="article-title"><?php echo $queries->post_title; ?></h2>
+            </a>
+            <h2 class="article-title"><?php echo $queries->post_title; ?></h2>
+          </div>
         <?php } ?>
+        </div>
       </div>
 
     </div><!-- End Content Pad -->

@@ -32,7 +32,7 @@ var add_to_reading_list = function(){
       $(readingButton).html('<span class="glyphicon glyphicon-minus"></span> Remove from List');
       $("#reading-list").removeClass("close");
       $("#readlist-container").append(data);
-      console.log(data);
+      // console.log(data);
     },
     error: function(errorThrown){
       console.log(errorThrown);
@@ -72,7 +72,7 @@ var remove_to_reading_list = function(){
       $(readingButton).removeClass("remove-to-list").addClass("add-to-list");
       $(readingButton).html('<span class="glyphicon glyphicon-plus"></span> Reading List');
       $("#reading-list").removeClass("close");
-      console.log(data);
+      // console.log(data);
     },
     error: function(errorThrown){
       console.log(errorThrown);
@@ -99,7 +99,7 @@ function init_reading_list() {
     },
     success:function(data) {
       $("#reading-list").append(data);
-      console.log(data);
+      // console.log(data);
     },
     error: function(errorThrown){
       console.log(errorThrown);
