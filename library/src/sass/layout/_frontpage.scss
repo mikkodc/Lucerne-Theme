@@ -6,18 +6,6 @@
   .row {
     height: 100%;
 
-    .large {
-      max-height: 500px;
-
-      img {
-        object-fit: cover;
-      }
-    }
-
-    .small {
-      max-height: 500px;
-    }
-
     div[class^="col-"] {
       padding: 0;
       position: relative;
@@ -62,6 +50,28 @@
 
         &:hover img {
           filter: brightness(0.8);
+        }
+      }
+    }
+
+    .large {
+      max-height: 500px;
+
+      img {
+        object-fit: cover;
+      }
+    }
+
+    .small {
+      max-height: 500px;
+      a {
+        .meta-overlay {
+          .meta-title {
+            width: 100%;
+            height: 2.1em;
+            overflow: hidden;
+            text-overflow: ellipsis;
+          }
         }
       }
     }
