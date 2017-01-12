@@ -15,7 +15,7 @@ get_header(); ?>
 
   <div id="ajax-container">
     <div class="container-fluid">
-
+      
       <!-- Start Featured Articles -->
       <?php
         //Post Arguments
@@ -33,6 +33,7 @@ get_header(); ?>
         $counter = 0; ?>
 
         <div class="featured-articles clearfix">
+          <h2 class="visible-xs section-title">Featured Articles</h2>
           <div class="row">
             <?php while($the_query->have_posts()) {
 

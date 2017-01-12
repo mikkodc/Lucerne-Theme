@@ -35,6 +35,16 @@
 
     .small {
       max-width: 100%!important;
+      padding-left: 5px!important;
+
+      a {
+        padding-top: 0!important;
+      }
+
+      &:last-of-type a {
+        padding-top: 5px!important;
+        height: 100%;
+      }
     }
   }
 }
@@ -153,7 +163,9 @@
     .title-bar {
 
       #back {
+        padding-top: 10px;
         margin: 0;
+        font-size: 18px;
 
         .hidden-xs {
           display: none;
@@ -163,6 +175,23 @@
       a {
         color: $color__white;
         cursor: pointer;
+      }
+
+      .mobile-icons {
+        ul {
+          padding-top: 10px;
+
+          li:not(:last-child) {
+            margin-right: 10px;
+          }
+
+          li {
+
+            a {
+              font-size: 18px;
+            }
+          }
+        }
       }
     }
   }
@@ -177,6 +206,10 @@
 
   .featured-articles {
 
+    .section-title {
+      margin-top: 10px;
+    }
+
     .row {
       .large,
       .small {
@@ -187,8 +220,15 @@
 
       .small {
         max-height: 200px!important;
+        &:last-of-type {
+          padding-left: 5px;
+          .meta-overlay {
+            left: 5px;
+          }
+        }
 
         a {
+          padding-top: 5px;
           .meta-overlay {
             .meta-title {
               @include multi-line(16px, 1.2, 2);
@@ -261,7 +301,7 @@
           width: 49%;
           float: left;
           font-size: 14px!important;
-          padding: 5px;
+          padding: 15px 5px;
         }
 
         & > *:last-child {
@@ -273,6 +313,21 @@
     .small {
       a {
         max-height: 385px;
+      }
+    }
+  }
+
+  //Login Page
+  .site-form {
+    form {
+      label,
+      input:not([type="submit"]) {
+        float: none;
+        width: 100%;
+      }
+      label {
+        text-align: center;
+        padding-right: 0;
       }
     }
   }

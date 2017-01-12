@@ -55,7 +55,7 @@
 
 			<div class="logo-bar">
 				<div class="container">
-					<a href="<?php bloginfo('url') ?>">
+					<a href="http://www.lucernepartners.com">
 						<img src="<?php echo bloginfo('template_directory'); ?>/library/src/img/Lucerne-Logo-Top120.png" alt="">
 					</a>
 				</div>
@@ -67,7 +67,7 @@
 							<a id="back"><span class="glyphicon glyphicon-chevron-left"></span><span class="hidden-xs">BACK</span></a>
 						</div>
 						<div class="col-xs-4 col-md-4">
-							<h1>Investor Library</h1>
+							<h1><a href="<?php bloginfo('url') ?>">Investor Library</a></h1>
 						</div>
 						<div class="col-xs-4 visible-xs mobile-icons">
 							<ul class="inline-list pull-right">

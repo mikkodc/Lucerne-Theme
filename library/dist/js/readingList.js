@@ -29,9 +29,12 @@ var add_to_reading_list = function(){
     },
     success:function(data) {
       $(readingButton).removeClass("add-to-list").addClass("remove-to-list");
-      $(readingButton).html('<span class="glyphicon glyphicon-minus"></span> Remove from List');
+      $(readingButton).html('<span class="glyphicon glyphicon-minus"></span> Reading List');
       $("#reading-list").removeClass("close");
       $("#readlist-container").append(data);
+      setTimeout(function(){
+        $("#reading-list").addClass("close");
+      }, 3000);
       // console.log(data);
     },
     error: function(errorThrown){
@@ -72,6 +75,9 @@ var remove_to_reading_list = function(){
       $(readingButton).removeClass("remove-to-list").addClass("add-to-list");
       $(readingButton).html('<span class="glyphicon glyphicon-plus"></span> Reading List');
       $("#reading-list").removeClass("close");
+      setTimeout(function(){
+        $("#reading-list").addClass("close");
+      }, 3000);
       // console.log(data);
     },
     error: function(errorThrown){

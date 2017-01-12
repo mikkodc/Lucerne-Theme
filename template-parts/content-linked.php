@@ -65,11 +65,7 @@ $queried_post = get_post($post_id); ?>
 
         </div>
 
-        <div class="article-excerpt">
-          <?php echo $article_type == 1 ? '<p>' .wp_trim_words( get_field("article_summary", $queried_post), 40, ''). '</p>' : get_field("article_content", $queried_post); ?>
-        </div>
-
-        <div class="article-options">
+        <div class="article-options clearfix">
           <?php
             if($article_type == 1) { ?>
               <a href="<?php echo get_permalink( $queried_post ); ?>" type="button" class="btn btn-default">View</a>
@@ -106,14 +102,16 @@ $queried_post = get_post($post_id); ?>
           } //End If User is Logged In ?>
 
         </div>
+
+        <div class="article-excerpt">
+          <?php echo $article_type == 1 ? '<p>' .wp_trim_words( get_field("article_summary", $queried_post), 40, ''). '</p>' : get_field("article_content", $queried_post); ?>
+        </div>
       </div>
       <!-- End Main Intro Content -->
 
       <!-- Start Author Meta -->
       <div class="author-meta row mb-40">
-        <blockquote class="author-foreword col-md-6">
-          <?php the_field("staff_member_foreword", $queried_post); ?>
-        </blockquote>
+
         <div class="author-info col-md-6">
           <div class="row">
 
@@ -134,6 +132,9 @@ $queried_post = get_post($post_id); ?>
 
           </div>
         </div>
+        <blockquote class="author-foreword col-md-6">
+          <?php the_field("staff_member_foreword", $queried_post); ?>
+        </blockquote>
       </div>
       <!-- End Author Meta -->
 
