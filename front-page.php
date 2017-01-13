@@ -39,7 +39,7 @@ get_header(); ?>
 
               $the_query->the_post(); ?>
 
-              <div class="col-md-<?php echo $counter == 0 ? '8 large' : '4 col-xs-6 small' ?>">
+              <div class="col-md-<?php echo $counter == 0 ? '8 large' : '4 col-sm-6 small' ?>">
                 <a class="ajax-link" data-id="<?php echo get_the_ID(); ?>">
                   <img src="<?php the_post_thumbnail_url(); ?>" alt="">
                   <div class="meta-overlay">
