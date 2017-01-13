@@ -65,6 +65,45 @@ $queried_post = get_post($post_id); ?>
 
         </div>
 
+        <?php if($article_type == 2){?>
+          <!-- Start Author Meta -->
+          <div class="author-meta row mb-40">
+
+            <div class="author-info col-md-6">
+              <div class="row">
+
+                <!-- Start Author Image -->
+                <div class="col-xs-5 col-md-4">
+                  <?php echo get_avatar( get_the_author_meta( 'ID' ) , 160 ); ?>
+                </div>
+                <!-- End Author Image -->
+
+                <!-- Start Author Details -->
+                <div class="col-xs-7 col-md-8">
+                  <h3 class="author-name"><?php echo the_author_meta('user_firstname', $queried_post->post_author); ?>
+                    <?php echo the_author_meta('user_lastname', $queried_post->post_author); ?></h3>
+                  <h3 class="author-title"><?php the_field('author_title', 'user_'. $queried_post->post_author) ?></h3>
+                  <ul class="no-bullet">
+                    <li>
+                      <span class="glyphicon glyphicon-envelope"></span> <a href="mailto:<?php echo the_author_meta('user_email', $queried_post->post_author); ?>">Email <?php echo the_author_meta('user_firstname', $queried_post->post_author); ?></a>
+                    </li>
+                    <li>
+                      <span class="glyphicon glyphicon-phone"></span> <a href="tel:<?php echo the_author_meta('phone', $queried_post->post_author); ?>"> <?php echo the_author_meta('phone', $queried_post->post_author); ?></a>
+                    </li>
+                  </ul>
+                </div>
+                <!-- End Author Details -->
+
+              </div>
+            </div>
+            <blockquote class="author-foreword col-md-6">
+              <?php the_field("staff_member_foreword", $queried_post); ?>
+            </blockquote>
+          </div>
+          <!-- End Author Meta -->
+          <div class="clearfix"></div>
+        <?php } ?>
+
         <div class="article-options clearfix">
           <?php
             if($article_type == 1) { ?>
@@ -109,6 +148,7 @@ $queried_post = get_post($post_id); ?>
       </div>
       <!-- End Main Intro Content -->
 
+      <?php if ($article_type != 2) { ?>
       <!-- Start Author Meta -->
       <div class="author-meta row mb-40">
 
@@ -144,6 +184,7 @@ $queried_post = get_post($post_id); ?>
         </blockquote>
       </div>
       <!-- End Author Meta -->
+      <?php } ?>
 
       <!-- Start Related Author Posts -->
       <div class="author-related">
