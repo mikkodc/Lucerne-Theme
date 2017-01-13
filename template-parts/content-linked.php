@@ -5,38 +5,37 @@ $post_id = $_GET['article'];
 //Query the post
 $queried_post = get_post($post_id); ?>
 <div class="linked-article clearfix">
-  <?php $current_article = $queried_post->ID; ?>
-  <div class="col-md-8 large" style="background: url('<?php echo get_the_post_thumbnail_url($current_article); ?>') center no-repeat">
-  </div>
-  <div class="col-md-4 hidden-xs hidden-sm small article-thumb">
-    <h2 class="section-title">
-      Related Articles
-    </h2>
-    <?php
-    $args = array(
-      'post_type' => 'post',
-      'posts_per_page' => '2',
-      'post__not_in' => array($current_article),
+  <div class="container">
+    <?php $current_article = $queried_post->ID; ?>
+    <div class="col-md-8 large" style="background: url('<?php echo get_the_post_thumbnail_url($current_article); ?>') center no-repeat">
+    </div>
+    <div class="col-md-4 hidden-xs hidden-sm small article-thumb">
+      <h2 class="section-title">
+        Related Articles
+      </h2>
+      <?php
+      $args = array(
+        'post_type' => 'post',
+        'posts_per_page' => '2',
+        'post__not_in' => array($current_article),
 
-    );
-    $query = get_posts($args);
-    foreach($query as $queries) { ?>
-      <?php //echo var_dump($queries); ?>
-      <a class="ajax-link" data-id="<?php echo $queries->ID; ?>">
-        <img src="<?php echo get_the_post_thumbnail_url($queries->ID); ?>" alt="" class="img-responsive">
-        <div class="meta-overlay">
-          <div class="meta-date">
-            <?php echo mysql2date('j F, Y', $queries->post_date); ?>
+      );
+      $query = get_posts($args);
+      foreach($query as $queries) { ?>
+        <?php //echo var_dump($queries); ?>
+        <a class="ajax-link" data-id="<?php echo $queries->ID; ?>">
+          <img src="<?php echo get_the_post_thumbnail_url($queries->ID); ?>" alt="" class="img-responsive">
+          <div class="meta-overlay">
+            <div class="meta-date">
+              <?php echo mysql2date('j F, Y', $queries->post_date); ?>
+            </div>
           </div>
-        </div>
-      </a>
-      <h2 class="article-title"><?php echo $queries->post_title; ?></h2>
-    <?php } ?>
-  </div>
+        </a>
+        <h2 class="article-title"><?php echo $queries->post_title; ?></h2>
+      <?php } ?>
+    </div>
 
-  <div class="clearfix"></div>
-
-  <div class="container-fluid">
+    <div class="clearfix"></div>
 
     <div class="content-pad">
 

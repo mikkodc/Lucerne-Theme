@@ -61,7 +61,7 @@
 				</div>
 			</div>
 			<div class="title-bar text-center">
-				<div class="container-fluid">
+				<div class="container">
 					<div class="row">
 						<div class="col-xs-4 col-md-4 text-left">
 							<a id="back"><span class="glyphicon glyphicon-chevron-left"></span><span class="hidden-xs">BACK</span></a>

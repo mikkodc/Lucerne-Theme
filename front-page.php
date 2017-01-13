@@ -14,7 +14,7 @@
 get_header(); ?>
 
   <div id="ajax-container">
-    <div class="container-fluid">
+    <div class="container">
 
       <!-- Start Featured Articles -->
       <?php
@@ -70,14 +70,15 @@ get_header(); ?>
 
     <!-- Start Categories Bar -->
     <div class="container-fluid cat-bar" data-spy="affix" data-offset-top="738">
-      <button type="button" class="btn btn-default" id="filter-btn" ></span>Filter <span class="glyphicon glyphicon-triangle-bottom"></button>
-        <ul class="pull-left">
+      <div class="container">
+        <button type="button" class="btn btn-default" id="filter-btn" ></span>Filter <span class="glyphicon glyphicon-triangle-bottom"></button>
+          <ul class="pull-left">
 
           <?php
           //Parent Terms
           $hiterms = get_terms( 'category', array('orderby' => 'name', 'parent' => 0));
 
-      			foreach ( $hiterms as $hiterm ) { ?>
+            foreach ( $hiterms as $hiterm ) { ?>
               <li><a href="#" data-term="<?php echo $hiterm->term_id; ?>"><?php echo $hiterm->name; ?></a>
 
                 <?php //Child Terms
@@ -95,15 +96,16 @@ get_header(); ?>
 
                   <?php } //End if has Child Terms ?>
               </li>
-      			<?php } //End of Parent Terms ?>
+            <?php } //End of Parent Terms ?>
         </ul>
         <div class="pull-right hidden-xs">
           <?php get_search_form(); ?>
         </div>
+      </div>
     </div>
     <!-- End Categories Bar -->
 
-    <div class="container-fluid preload-container">
+    <div class="container preload-container">
 
       <!-- Start Preloader -->
       <div id="preloader" class="clearfix">
