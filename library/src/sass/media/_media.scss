@@ -218,6 +218,12 @@
         }
       }
 
+      .large {
+        .meta-title {
+          width: 75%;
+        }
+      }
+
       .small {
         max-height: 200px!important;
         &:last-of-type {

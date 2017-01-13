@@ -47,6 +47,16 @@ body {
 .glyphicon {
   margin-right: 5px;
 }
+ul.no-bullet {
+  margin: 0;
+  padding-left: 0;
+  list-style: none;
+  li {
+    &:not(:last-child) {
+      margin-bottom: 10px;
+    }
+  }
+}
 ul.inline-list {
   margin: 0;
   list-style: none;
@@ -136,7 +146,7 @@ ul.inline-list {
   .article-title a {
     color: $color__darkBlue;
     font-weight: 600;
-    @include multi-line(24px, 1.2, 2);
+    @include multi-line(16px, 1.2, 2);
 
     &:hover {
       text-decoration: none;
@@ -144,7 +154,7 @@ ul.inline-list {
   }
 
   h4.article-title a {
-    @include multi-line(18px, 1.2, 2);
+    @include multi-line(16px, 1.2, 2);
     font-weight: 700;
     margin-top: 10px;
     text-transform: none;

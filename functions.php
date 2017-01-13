@@ -146,6 +146,21 @@ add_action( 'wp_enqueue_scripts', 'lucerne_scripts' );
 @include('ajax-functions/ajax-object.php');
 
 /**
+ * Add new fields into 'Contact Info' section.
+ *
+ * @param  array $fields Existing fields array.
+ * @return array
+ */
+function additional_contact_methods( $fields ) {
+
+    $fields['phone'] 	= 'Phone Number';
+
+    return $fields;
+}
+
+add_filter( 'user_contactmethods', 'additional_contact_methods' );
+
+/**
  * Remove Admin Bar
  */
 add_filter('show_admin_bar', '__return_false');

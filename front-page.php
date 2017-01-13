@@ -15,7 +15,7 @@ get_header(); ?>
 
   <div id="ajax-container">
     <div class="container-fluid">
-      
+
       <!-- Start Featured Articles -->
       <?php
         //Post Arguments

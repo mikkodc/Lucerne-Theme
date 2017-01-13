@@ -62,7 +62,7 @@
 
       .meta-title {
         width: 50%;
-        @include multi-line(30px, 1.2, 3);
+        @include multi-line(20px, 1.2, 3);
       }
     }
 
@@ -71,7 +71,7 @@
       a {
         .meta-overlay {
           .meta-title {
-            @include multi-line(24px, 1.2, 2);
+            @include multi-line(16px, 1.2, 3);
           }
         }
       }
