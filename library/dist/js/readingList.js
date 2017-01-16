@@ -2,10 +2,6 @@ var articleId;
 var readingButton;
 var readingEmpty = $("#readlist-container").is(':empty');
 
-if(!readingEmpty) {
-  $(this).children('is-empty').removeClass('no')
-}
-
 $("body").on("click",".add-to-list",function(){
 
   readingButton = $(this);
@@ -49,6 +45,8 @@ $("body").on("click",".remove-to-list",function(){
 
   articleId = $(this).data('id');
 
+  // alert(articleId);
+
   var $div = $("#reading-list .item-container").filter(function() {
     return $(this).data("id") == articleId;
   });
@@ -72,12 +70,27 @@ var remove_to_reading_list = function(){
 
     },
     success:function(data) {
-      $(readingButton).removeClass("remove-to-list").addClass("add-to-list");
-      $(readingButton).html('<span class="glyphicon glyphicon-plus"></span> Reading List');
-      $("#reading-list").removeClass("close");
-      setTimeout(function(){
-        $("#reading-list").addClass("close");
-      }, 3000);
+      if((readingButton).is(':visible')) {
+        $(readingButton).removeClass("remove-to-list").addClass("add-to-list");
+        $(readingButton).html('<span class="glyphicon glyphicon-plus"></span> Reading List');
+        $("#reading-list").removeClass("close");
+        setTimeout(function(){
+          $("#reading-list").addClass("close");
+        }, 3000);
+      } else {
+
+        var sameButton = $('.article-options .remove-to-list');
+        var sameButtonID = sameButton.data('id');
+
+        if(sameButtonID == articleId) {
+          $(sameButton).removeClass("remove-to-list").addClass("add-to-list");
+          $(sameButton).html('<span class="glyphicon glyphicon-plus"></span> Reading List');
+          setTimeout(function(){
+            $("#reading-list").addClass("close");
+          }, 3000);
+        }
+      }
+
       // console.log(data);
     },
     error: function(errorThrown){
@@ -115,9 +128,11 @@ function init_reading_list() {
 
 //Check if Reading List is empty
 function check_read_list() {
-  if(!readingEmpty) {
-    $(this).children('is-empty').removeClass('no-content');
-  } else {
-    $(this).children('is-empty').addClass('no-content');
-  }
+  // alert(readingEmpty);
+  // if(readingEmpty) {
+  //   $("#reading-list .text-container").append('No Articles in the Reading List');
+  //
+  // } else {
+  //   $("#reading-list .text-container").empty();
+  // }
 }

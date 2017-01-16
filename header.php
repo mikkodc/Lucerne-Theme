@@ -28,7 +28,6 @@
 
 	<div class="header-type clearfix <?php echo $article_type == 1 ? "linked-article" : "" ?>">
 
-		<?php if(is_user_logged_in()) { ?>
 		<!-- Start Sliding Reading List -->
 		<div id="reading-list" class="text-light close">
 			<div class="button-container">
@@ -36,6 +35,7 @@
 			</div>
 
 			<h3 class="section-title text-light text-center">Reading List</h3>
+			<p class="text-center no-content text-container"></p>
 			<div id="readlist-container"></div>
 			</div>
 		</div>
@@ -48,7 +48,6 @@
 				</ul>
 			</div>
 		</div>
-		<?php } ?>
 		<!-- Start Site Header -->
 
 		<header id="main-header" style="margin-top: <?php echo is_user_logged_in() ? '' : '0'; ?>">

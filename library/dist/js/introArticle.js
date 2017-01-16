@@ -1,8 +1,18 @@
 var articleId;
 
+var currId;
+
+var prevPage;
+
+var pageHistory = [0];
+
 $("body").on("click",".ajax-link",function(){
 
   articleId = $(this).data('id');
+
+  currId = $(this).data('id');
+
+  // alert(pageHistory);
 
   //Slide to Top
   $("html, body").animate({ scrollTop: 0 }, "slow");
@@ -12,6 +22,29 @@ $("body").on("click",".ajax-link",function(){
   $('#ajax-container').delay( 800 ).fadeOut();
 
   load_introArticle();
+
+  pageHistory.push(articleId);
+
+});
+
+$("body").on("click","#back",function(){
+
+  if(currId == articleId) {
+    pageHistory.pop()
+
+  }
+
+  articleId = pageHistory.pop();
+
+  alert(currId);
+
+  if(articleId == 0) {
+    $('#intro-article').fadeOut().empty();
+    $("#back").css('display', 'none');
+    $('#ajax-container').fadeIn();
+  } else {
+    load_introArticle();
+  }
 
 });
 
@@ -40,11 +73,11 @@ var load_introArticle = function(){
 
       $("#back").css('display', 'block');
 
-      $('#back').click(function(){
-        $('#intro-article').fadeOut().empty();
-        $("#back").css('display', 'none');
-        $('#ajax-container').fadeIn();
-      });
+      // $('#back').click(function(){
+      //   $('#intro-article').fadeOut().empty();
+      //   $("#back").css('display', 'none');
+      //   $('#ajax-container').fadeIn();
+      // });
       // console.log(data);
     },
     error: function(errorThrown){

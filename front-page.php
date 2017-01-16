@@ -47,7 +47,13 @@ get_header(); ?>
                   <div class="meta-overlay">
                     <h2 class="meta-title"><?php the_title(); ?></h2>
                     <div class="meta-date">
-                      <?php the_time('F j, Y'); ?>
+                      <?php
+                        $author_name = get_field('author_name', get_the_ID());
+                        if($author_name) {
+                          echo $author_name;
+                        } else {
+                          the_time('F j, Y');
+                        } ?>
                     </div>
                   </div>
                 </a>
