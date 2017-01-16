@@ -36,7 +36,7 @@ $("body").on("click","#back",function(){
 
   articleId = pageHistory.pop();
 
-  alert(currId);
+  // alert(currId);
 
   if(articleId == 0) {
     $('#intro-article').fadeOut().empty();
