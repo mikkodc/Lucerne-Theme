@@ -25,6 +25,8 @@ $("body").on("click",".ajax-link",function(){
 
   pageHistory.push(articleId);
 
+  // alert(pageHistory);
+
 });
 
 $("body").on("click","#back",function(){
@@ -39,6 +41,8 @@ $("body").on("click","#back",function(){
   // alert(currId);
 
   if(articleId == 0) {
+    articleId = pageHistory.push(0);
+    // alert(articleId);
     $('#intro-article').fadeOut().empty();
     $("#back").css('display', 'none');
     $('#ajax-container').fadeIn();
