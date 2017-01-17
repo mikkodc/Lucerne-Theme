@@ -32,6 +32,7 @@
             transform: translateY(-50%);
             margin-left: 20px;
             margin-right: 50px;
+            font-size: 20px;
           }
 
           .meta-date {
@@ -59,19 +60,11 @@
 
       .meta-title {
         width: 50%;
-        @include multi-line(20px, 1.2, 3);
       }
     }
 
     .small {
       max-height: 500px;
-      a {
-        .meta-overlay {
-          .meta-title {
-            @include multi-line(16px, 1.2, 3);
-          }
-        }
-      }
     }
   }
 }
@@ -138,7 +131,6 @@
     .article-title {
       font-weight: 700;
       margin-top: 10px;
-      @include multi-line(18px, 1.2, 1);
     }
 
     &.article-thumb {
