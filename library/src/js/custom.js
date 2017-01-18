@@ -27,7 +27,7 @@ $(document).ready(function(){
       toggleFilter();
     });
 
-    $('.cat-bar > ul > li').each(function(){
+    $('.cat-bar .row > ul > li').each(function(){
       if($(this).children('ul').length > 0) {
         $(this).append('<span class="sidebar-menu-arrow add"></span>');
 
@@ -69,7 +69,7 @@ $(document).ready(function(){
 
     function toggleFilter() {
       $('#filter-btn').children('span').toggleClass('glyphicon glyphicon-triangle-bottom glyphicon glyphicon-triangle-top');
-      $('.cat-bar > ul').slideToggle(300);
+      $('.cat-bar .row > ul').slideToggle(300);
     }
   } else {
     $(".cat-bar").removeClass("mobile-bar");

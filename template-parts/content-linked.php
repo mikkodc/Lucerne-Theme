@@ -76,7 +76,7 @@ if($post_id == 0) {
           <div class="article-options clearfix">
             <?php
               if($article_type == 1) { ?>
-                <a type="button" id="test" class="btn btn-default">View</a>
+                <a href="<?php echo get_the_permalink($queried_post); ?>" type="button" class="btn btn-default">View</a>
               <?php } else { ?>
                 <?php $file = get_field('article_pdf', $queried_post); ?>
                 <a href="<?php echo $file['url']; ?>" target="_blank" type="button" class="btn btn-default">Download</a>

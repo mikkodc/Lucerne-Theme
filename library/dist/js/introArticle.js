@@ -18,7 +18,7 @@ $("body").on("click",".ajax-link",function(){
 
   pageHistory.push(articleId);
 
-  alert('Current page ID is '+ currId +' Article ID is '+ articleId +' Page history now contains '+ pageHistory);
+  // alert('Current page ID is '+ currId +' Article ID is '+ articleId +' Page history now contains '+ pageHistory);
 
 });
 
@@ -41,7 +41,7 @@ $("body").on("click","#back",function(){
 
   load_introArticle();
 
-  alert('Current page ID is '+ currId +' Article ID is '+ articleId +' Page history now contains '+ pageHistory);
+  // alert('Current page ID is '+ currId +' Article ID is '+ articleId +' Page history now contains '+ pageHistory);
 
 });
 
