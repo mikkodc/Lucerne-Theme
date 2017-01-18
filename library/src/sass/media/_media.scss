@@ -50,6 +50,20 @@
   }
 }
 
+@media screen and (max-width: 991px) {
+  .featured-articles {
+    .row {
+      .small {
+        max-height: 500px;
+
+        a {
+          padding-top: 5px;
+        }
+      }
+    }
+  }
+}
+
 //Larger than 768px
 @media screen and (min-width: 768px) {
 
@@ -72,7 +86,6 @@
           font-weight: 600;
           padding: 20px;
           display: inline-block;
-          min-width: 500px;
           @include transition;
         }
 
@@ -231,10 +244,6 @@
       .small {
         max-height: 500px!important;
 
-        a {
-          padding-top: 5px;
-        }
-
         img {
           height: auto;
           width: auto;
@@ -339,4 +348,22 @@
     }
   }
 
+}
+
+//Smaller than 480px
+@media screen and (max-width: 480px) {
+  .featured-articles {
+    .row {
+      & > div[class^="col-"] {
+        a {
+          .meta-overlay {
+            .meta-title {
+              top: 10%;
+              transform: none;
+            }
+          }
+        }
+      }
+    }
+  }
 }

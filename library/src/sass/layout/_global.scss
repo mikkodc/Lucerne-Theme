@@ -118,7 +118,7 @@ ul.inline-list {
   display: block;
   margin: 0 auto;
   margin-bottom: 30px;
-  height: 412px;
+  height: 360px;
   overflow: hidden;
 
   a {
@@ -150,6 +150,7 @@ ul.inline-list {
   .article-title a {
     color: $color__darkBlue;
     font-weight: 600;
+    font-size: 20px;
 
     &:hover {
       text-decoration: none;
