@@ -37,7 +37,6 @@
 			<h3 class="section-title text-light text-center">Reading List</h3>
 			<p class="text-center no-content text-container"></p>
 			<div id="readlist-container"></div>
-			</div>
 		</div>
 		<!-- End Sliding Reading List -->
 
@@ -50,7 +49,7 @@
 		</div>
 		<!-- Start Site Header -->
 
-		<header id="main-header" style="margin-top: <?php echo is_user_logged_in() ? '' : '0'; ?>">
+		<header id="main-header">
 
 			<div class="logo-bar">
 				<div class="container">

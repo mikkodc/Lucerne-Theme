@@ -71,7 +71,6 @@
     background-color: $color__black;
 
     ul{
-      padding-left: 20px;
       list-style: none;
       margin-bottom: 0;
       margin-left: 0;
@@ -132,6 +131,7 @@
   }
 
   .other-articles {
+
     .article-item {
       max-width: none;
     }
@@ -299,6 +299,13 @@
     }
   }
 
+  .other-articles {
+    &.content-pad {
+      padding-left: 15px;
+      padding-right: 15px;
+    }
+  }
+
   .linked-article {
 
     .main-intro-content {
@@ -333,7 +340,7 @@
     }
   }
 
-  //Login Page
+  //Login Page©
   .site-form {
     form {
       label,

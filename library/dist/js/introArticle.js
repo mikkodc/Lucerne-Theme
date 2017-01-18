@@ -1,55 +1,54 @@
 var articleId;
-
 var currId;
-
-var prevPage;
-
 var pageHistory = [0];
 
 $("body").on("click",".ajax-link",function(){
+
+  if(jQuery.isEmptyObject(pageHistory)) {
+    pageHistory.push(0);
+  }
 
   articleId = $(this).data('id');
 
   currId = $(this).data('id');
 
-  // alert(pageHistory);
-
-  //Slide to Top
-  $("html, body").animate({ scrollTop: 0 }, "slow");
-  $('#intro-article').empty();
-
-  //Slide Content Left
-  $('#ajax-container').delay( 800 ).fadeOut();
-
   load_introArticle();
+
+  $("#back").fadeIn(500);
 
   pageHistory.push(articleId);
 
-  // alert(pageHistory);
+  alert('Current page ID is '+ currId +' Article ID is '+ articleId +' Page history now contains '+ pageHistory);
 
 });
 
 $("body").on("click","#back",function(){
 
   if(currId == articleId) {
-    pageHistory.pop()
-
+    pageHistory.pop();
   }
-
-  articleId = pageHistory.pop();
-
-  // alert(currId);
 
   if(articleId == 0) {
     articleId = pageHistory.push(0);
-    // alert(articleId);
-    $('#intro-article').fadeOut().empty();
-    $("#back").css('display', 'none');
-    $('#ajax-container').fadeIn();
+    $("#back").fadeOut(500);
+
   } else {
-    load_introArticle();
+    articleId = pageHistory.pop();
+    if(articleId == 0) {
+      $("#back").fadeOut(500);
+    }
   }
 
+  load_introArticle();
+
+  alert('Current page ID is '+ currId +' Article ID is '+ articleId +' Page history now contains '+ pageHistory);
+
+});
+
+//Testing JS
+$("body").on("click","#test",function(){
+  var testValue = $(this).parent().find('.linked-article').data('id');
+  alert(testValue);
 });
 
 var load_introArticle = function(){
@@ -58,30 +57,25 @@ var load_introArticle = function(){
     data: {
       'action': 'intro_article',
       article: articleId
-      // article: 26
     },
     dataType: "html",
     url: ajax_object.ajax_url,
     beforeSend : function(){
 
+      //Slide to Top
+      $("html, body").animate({ scrollTop: 0 }, "slow");
+
+      //Empty the container and append loading gif
+      $('#ajax-container').empty();
+      $('#ajax-container').append('<img src="'+ templateDir +'/library/src/img/ajax-loader.gif" class="preload-gif" alt="preloader">');
+
     },
     success:function(data) {
 
-      $('#intro-article').fadeOut().empty();
+      //Append data and remove the loading gif
+      $(data).hide().appendTo('#ajax-container').fadeIn(500);
+      $('#ajax-container .preload-gif').fadeOut(500).remove();
 
-      $("#intro-article").append(data);
-
-      $('#ajax-container').fadeOut();
-
-      $("#intro-article").fadeIn();
-
-      $("#back").css('display', 'block');
-
-      // $('#back').click(function(){
-      //   $('#intro-article').fadeOut().empty();
-      //   $("#back").css('display', 'none');
-      //   $('#ajax-container').fadeIn();
-      // });
       // console.log(data);
     },
     error: function(errorThrown){

@@ -20,10 +20,6 @@ $(document).ready(function(){
     $('.toggle-search').slideToggle(300);
   });
 
-
-
-
-
   //jQuery Media Queries
   if($(window).width() < 767) {
     //Filter Toggle
