@@ -31,25 +31,23 @@ $(document).on( 'submit', '.search-form', function() {
 });
 
 //Category Filter
-$(document).ready(function(){
-  $("body").on("click",".cat-bar ul li a",function(){
-		var filter = $(this).data('term');
+$("body").on("click",".cat-bar ul li a",function(){
+	var filter = $(this).data('term');
 
-    $.ajax({
-      type : 'get',
-      url:ajax_object.ajax_url,
-      data: {
-        action : 'category_filter_function',
-        filter: filter
-      },
-			beforeSend:function(data){
-        $('#preloader').show();
-			},
-			success:function(data){
-				$('.other-articles').html(data);
-        $('#preloader').fadeOut();
-			}
-		});
-		return false;
-  });
+  $.ajax({
+    type : 'get',
+    url:ajax_object.ajax_url,
+    data: {
+      action : 'category_filter_function',
+      filter: filter
+    },
+		beforeSend:function(data){
+      $('#preloader').show();
+		},
+		success:function(data){
+			$('.other-articles').html(data);
+      $('#preloader').fadeOut();
+		}
+	});
+	return false;
 });

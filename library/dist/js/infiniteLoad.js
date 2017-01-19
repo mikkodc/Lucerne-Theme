@@ -43,6 +43,11 @@ $window.scroll(function() {
 
 load_posts();
 
-$('.load-more').click(function() {
+$(document).delegate(".load-more", "click", function(){
+  // alert("clicked");
   load_posts();
+});
+$("body").on("click",".ajax-link",function(){
+  page = 1;
+  alert('Page changed! The page is now reset to'+ page);
 });
