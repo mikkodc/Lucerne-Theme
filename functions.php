@@ -163,7 +163,14 @@ add_filter( 'user_contactmethods', 'additional_contact_methods' );
 /**
  * Remove Admin Bar
  */
-add_filter('show_admin_bar', '__return_false');
+// add_filter('show_admin_bar', '__return_false');
+add_action('after_setup_theme', 'remove_admin_bar');
+
+function remove_admin_bar() {
+	if (!current_user_can('administrator') && !is_admin()) {
+	  show_admin_bar(false);
+	}
+}
 
 /**
  * WP_LOGIN Options
@@ -176,10 +183,14 @@ function add_lost_password_link() {
 
 function redirect_login_page() {
   $login_page  = home_url( '/login/' );
+  $register_page  = home_url( '/register/' );
   $page_viewed = basename($_SERVER['REQUEST_URI']);
 
   if( $page_viewed == "wp-login.php" && $_SERVER['REQUEST_METHOD'] == 'GET') {
     wp_redirect($login_page);
+    exit;
+  } elseif( $page_viewed == "wp-login.php?action=register" && $_SERVER['REQUEST_METHOD'] == 'GET') {
+    wp_redirect($register_page);
     exit;
   }
 }
@@ -212,6 +223,7 @@ function logout_page() {
   exit;
 }
 add_action('wp_logout','logout_page');
+
 
 /**
  * Implement the Custom Thumbnail Size

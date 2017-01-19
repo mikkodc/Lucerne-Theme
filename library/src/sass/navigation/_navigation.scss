@@ -104,6 +104,9 @@
       position: absolute; left: -9999px;
     }
   }
+  &.affix {
+    @include admin-sticky-fix(11);
+  }
 }
 
 @media screen and (max-width: 768px) {

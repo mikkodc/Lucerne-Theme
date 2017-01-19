@@ -49,5 +49,5 @@ $(document).delegate(".load-more", "click", function(){
 });
 $("body").on("click",".ajax-link",function(){
   page = 1;
-  alert('Page changed! The page is now reset to'+ page);
+  //alert('Page changed! The page is now reset to'+ page);
 });

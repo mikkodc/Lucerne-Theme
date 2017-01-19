@@ -9,6 +9,8 @@
   right: 0;
   z-index: 99;
 
+  @include admin-sticky-fix;
+
   ul {
     margin-bottom: 0;
 
