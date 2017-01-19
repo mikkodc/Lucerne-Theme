@@ -108,7 +108,33 @@
     </div>
     <!-- End Preloader -->
 
-    <div class="other-articles content-pad clearfix row"></div>
+    <div class="other-articles content-pad clearfix row">
+      <?php $args = array(
+        'post_type' => 'post',
+        'posts_per_page' => 6,
+      );
+
+      //WP Query
+      $query2 = new WP_Query($args);
+
+      if($query2->have_posts()) { ?>
+
+        <!-- Start Other Articles -->
+        <?php while($query2->have_posts()) {
+
+          $query2->the_post();
+          $exclude_id = get_the_ID();
+
+          get_template_part( 'template-parts/content-ajax' );
+
+        }
+        //Reset Post Data
+        wp_reset_postdata();?>
+
+        <!-- End Other Articles -->
+
+      <?php } ?>
+    </div>
     <span class="load-more">Load More</span>
     <!-- <div id="preload-gif">
       <img src="<?php echo bloginfo('template_directory'); ?>/library/src/img/ajax-loader.gif" alt="Loading">

@@ -1,8 +1,10 @@
-var page = 1;
+var page = 2;
 var loading = true;
 var $window = $(window);
 var $content = $(".load-more");
-var load_posts = function(){
+
+function loadPosts() {
+
   $.ajax({
     type       : "GET",
     data       : {numPosts : 3, pageNumber: page},
@@ -29,25 +31,29 @@ var load_posts = function(){
         alert(jqXHR + " :: " + textStatus + " :: " + errorThrown);
     }
   });
-};
 
-$window.scroll(function() {
-  var content_offset = $content.offset();
-  if(!loading && ($window.scrollTop() +
-    $window.height()) > ($content.scrollTop() +
-    $content.height() + content_offset.top)) {
-      loading = true;
-      load_posts();
-  }
-});
+}
 
-load_posts();
+function loadScroll() {
+  alert('test');
+  $window.scroll(function() {
+    var content_offset = $content.offset();
+    if(!loading && ($window.scrollTop() +
+      $window.height()) > ($content.scrollTop() +
+      $content.height() + content_offset.top)) {
+        loading = true;
+        loadPosts();
+    }
+  });
+}
 
-$(document).delegate(".load-more", "click", function(){
+loadScroll();
+loadPosts();
+
+$(document).on(".load-more", "click", function(){
   // alert("clicked");
-  load_posts();
+  loadPosts();
 });
 $("body").on("click",".ajax-link",function(){
   page = 1;
-  alert('Page changed! The page is now reset to'+ page);
 });
