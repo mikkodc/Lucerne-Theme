@@ -178,7 +178,8 @@ function remove_admin_bar() {
 
 add_action( 'login_form_bottom', 'add_lost_password_link' );
 function add_lost_password_link() {
-	return '<a href="/wp-login.php?action=lostpassword">Forgot your Password?</a>';
+	$siteurl = get_bloginfo('url');
+	return '<a href="'. $siteurl .'/lostpass">Forgot your Password?</a>';
 }
 
 function redirect_login_page() {
@@ -196,10 +197,10 @@ function redirect_login_page() {
 }
 add_action('init','redirect_login_page');
 
-add_filter( 'lostpassword_url', 'my_lost_password_page', 10, 2 );
-function my_lost_password_page( $lostpassword_url, $redirect ) {
-    return home_url( '/login/?redirect_to=' . $redirect );
-}
+// add_filter( 'lostpassword_url', 'my_lost_password_page', 10, 2 );
+// function my_lost_password_page( $lostpassword_url, $redirect ) {
+//     return home_url( '/login/?redirect_to=' . $redirect );
+// }
 
 function login_failed() {
   $login_page  = home_url( '/login/' );

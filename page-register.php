@@ -8,16 +8,21 @@ get_header()
 	$err = '';
 	$success = '';
 
+  $email = $_GET['email'];
+
+  if(email_exists($email)) {
+    $err = 'Email already exist.';
+  }
+
 	global $wpdb, $PasswordHash, $current_user, $user_ID;
 
 	if(isset($_POST['task']) && $_POST['task'] == 'register' ) {
 
 
-		$pwd1 = $wpdb->escape(trim($_POST['pwd1']));
-    $username = $wpdb->escape(trim($_POST['username']));
+		$pwd = $wpdb->escape(trim($_POST['pwd']));
 		$email = $wpdb->escape(trim($_POST['email']));
 
-		if( $pwd1 == "" ) {
+		if( $pwd == "" ) {
 			$err = 'Please enter a password.';
 		} else if(email_exists($email) ) {
 			$err = 'Email already exist.';
@@ -25,8 +30,8 @@ get_header()
 
 			$user_id = wp_insert_user(
         array (
-          'user_pass' => apply_filters('pre_user_user_pass', $pwd1),
-          'user_login' => apply_filters('pre_user_user_login', $username),
+          'user_pass' => apply_filters('pre_user_user_pass', $pwd),
+          'user_login' => apply_filters('pre_user_user_login', $email),
           'user_email' => apply_filters('pre_user_user_login', $email),
           'role' => 'subscriber'
         )
@@ -59,13 +64,9 @@ get_header()
   <h3 class="sub-title">You have been invited to access the Lucerne Investment Partners Investor Library.</h3>
   <h4 class="form-title">Please choose a password.</h4>
 	<form method="post">
-    <p>
-      <label>Username</label>
-      <input type="text" value="" name="username" id="username" />
-    </p>
 		<p>
       <label>Password</label>
-      <input type="password" value="" name="pwd1" id="pwd1" />
+      <input type="password" value="" name="pwd" id="pwd" />
     </p>
     <input type="hidden" name="email" value="<?php echo $_GET['email'] ?>" />
 		<button type="submit" name="btnregister" class="btn btn-default" >Submit ></button>
