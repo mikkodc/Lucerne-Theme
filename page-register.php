@@ -40,10 +40,13 @@ get_header()
 			if( is_wp_error($user_id) ) {
 				$err = 'Error on user creation.';
 			} else {
+        $url = get_bloginfo('url');
 				do_action('user_register', $user_id);
 
-				$success = 'You\'re successfully register';
+				$success = 'You\'ve successfully registered';
 			}
+      // wp_redirect( $url );
+      // exit;
 		}
 	}
 	?>
