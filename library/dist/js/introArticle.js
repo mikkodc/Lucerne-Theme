@@ -1,6 +1,7 @@
 var articleId;
 var currId;
 var pageHistory = [0];
+var pageType = "";
 
 $("body").on("click",".ajax-link",function(){
 
@@ -9,6 +10,8 @@ $("body").on("click",".ajax-link",function(){
 
     $('.header-type').addClass('linked-article');
     $(".back-linked").fadeIn(500);
+
+    pageType = "linked";
 
     currId = currId;
 
@@ -24,11 +27,11 @@ $("body").on("click",".ajax-link",function(){
 
     currId = $(this).data('id');
 
-    load_introArticle();
-
     $(".back-ajax").fadeIn(500);
 
   }
+
+  load_introArticle();
 
   pageHistory.push(articleId);
 
@@ -42,27 +45,28 @@ $("body").on("click",".back",function(){
   if($('.header-type').hasClass('linked-article')) {
     $('.header-type').removeClass('linked-article');
     $(".back-linked").fadeOut(500);
+    pageType = "";
   } else {
     //Remove the current value if equals to current page id
     if(currId == articleId) {
       pageHistory.pop();
     }
+  }
 
+  if(articleId == 0) {
+    articleId = pageHistory.push(0);
+    $(".back").fadeOut(500);
+
+  } else {
+    articleId = pageHistory.pop();
     if(articleId == 0) {
-      articleId = pageHistory.push(0);
       $(".back").fadeOut(500);
-
-    } else {
-      articleId = pageHistory.pop();
-      if(articleId == 0) {
-        $(".back").fadeOut(500);
-      }
     }
   }
 
   load_introArticle();
 
-  // alert('Current page ID is '+ currId +' Article ID is '+ articleId +' Page history now contains '+ pageHistory);
+  alert('Current page ID is '+ currId +' Article ID is '+ articleId +' Page history now contains '+ pageHistory);
 
 });
 
@@ -77,7 +81,8 @@ var load_introArticle = function(){
     type: "get",
     data: {
       'action': 'intro_article',
-      article: articleId
+      article: articleId,
+      articleType : pageType,
     },
     dataType: "html",
     url: ajax_object.ajax_url,
