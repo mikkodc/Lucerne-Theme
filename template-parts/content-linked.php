@@ -76,16 +76,14 @@ if($post_id == 0) {
           <div class="article-options clearfix">
             <?php
               if($article_type == 1) { ?>
-                <a href="<?php echo get_the_permalink($queried_post); ?>" type="button" class="btn btn-default">View</a>
+                <a href="#<?php //echo get_the_permalink($queried_post); ?>" type="button" class="btn btn-default ajax-link linked-link">View</a>
               <?php } else { ?>
                 <?php $file = get_field('article_pdf', $queried_post); ?>
                 <a href="<?php echo $file['url']; ?>" target="_blank" type="button" class="btn btn-default">Download</a>
                 <!-- Direct Download -->
                 <!-- <a href="<?php //echo $file['url']; ?>" download="<?php //echo $file['filename']; ?>" type="button" class="btn btn-default">Download</a> -->
-              <?php } ?>
+              <?php }
 
-            <?php
-            if(is_user_logged_in()) {
               $user_inserted = wp_get_current_user();
               $current_user_id = $user_inserted->ID;
 
@@ -105,9 +103,7 @@ if($post_id == 0) {
                 echo $readingButton;
               } else { ?>
                 <button type="button" class="btn btn-default add-to-list" data-id="<?php echo $post_id ?>"><span class="glyphicon glyphicon-plus"></span> Reading List</button>
-              <?php }
-
-            } //End If User is Logged In ?>
+              <?php } ?>
 
           </div>
 

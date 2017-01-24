@@ -225,6 +225,17 @@ function logout_page() {
 }
 add_action('wp_logout','logout_page');
 
+// function redirect_non_logged_users_to_specific_page() {
+//
+// 	if ( is_user_logged_in() && !is_page('38') ) {
+//
+// 		wp_redirect( 'http://www.lucernepartners.com');
+//     exit;
+// 	}
+// }
+//
+// add_action( 'template_redirect', 'redirect_non_logged_users_to_specific_page' );
+
 
 /**
  * Implement the Custom Thumbnail Size

@@ -4,38 +4,59 @@ var pageHistory = [0];
 
 $("body").on("click",".ajax-link",function(){
 
-  if(jQuery.isEmptyObject(pageHistory)) {
-    pageHistory.push(0);
+  //If view article button click
+  if($(this).hasClass('linked-link')) {
+
+    $('.header-type').addClass('linked-article');
+    $(".back-linked").fadeIn(500);
+
+    currId = currId;
+
+    articleId = articleId;
+
+  } else {
+
+    if(jQuery.isEmptyObject(pageHistory)) {
+      pageHistory.push(0);
+    }
+
+    articleId = $(this).data('id');
+
+    currId = $(this).data('id');
+
+    load_introArticle();
+
+    $(".back-ajax").fadeIn(500);
+
   }
-
-  articleId = $(this).data('id');
-
-  currId = $(this).data('id');
-
-  load_introArticle();
-
-  $("#back").fadeIn(500);
 
   pageHistory.push(articleId);
 
-  // alert('Current page ID is '+ currId +' Article ID is '+ articleId +' Page history now contains '+ pageHistory);
+  alert('Current page ID is '+ currId +' Article ID is '+ articleId +' Page history now contains '+ pageHistory);
 
 });
 
-$("body").on("click","#back",function(){
+$("body").on("click",".back",function(){
 
-  if(currId == articleId) {
-    pageHistory.pop();
-  }
-
-  if(articleId == 0) {
-    articleId = pageHistory.push(0);
-    $("#back").fadeOut(500);
-
+  //Changed the header back to its normal state
+  if($('.header-type').hasClass('linked-article')) {
+    $('.header-type').removeClass('linked-article');
+    $(".back-linked").fadeOut(500);
   } else {
-    articleId = pageHistory.pop();
+    //Remove the current value if equals to current page id
+    if(currId == articleId) {
+      pageHistory.pop();
+    }
+
     if(articleId == 0) {
-      $("#back").fadeOut(500);
+      articleId = pageHistory.push(0);
+      $(".back").fadeOut(500);
+
+    } else {
+      articleId = pageHistory.pop();
+      if(articleId == 0) {
+        $(".back").fadeOut(500);
+      }
     }
   }
 
