@@ -237,6 +237,24 @@ function redirect_non_logged_users_to_specific_page() {
 
 add_action( 'template_redirect', 'redirect_non_logged_users_to_specific_page' );
 
+add_action( 'init', 'blockusers_init' );
+function blockusers_init() {
+	if ( is_admin() && ! current_user_can( 'administrator' ) &&
+	! ( defined( 'DOING_AJAX' ) && DOING_AJAX ) ) {
+		wp_redirect( home_url() );
+		exit;
+	}
+}
+
+add_action( 'shutdown', 'redirect_homepage_register' );
+function redirect_homepage_register() {
+  if( isset( $_POST['register_form'] ) ):
+    // process form, and then
+    wp_redirect( home_url() );
+    exit();
+  endif;
+}
+
 
 /**
  * Implement the Custom Thumbnail Size

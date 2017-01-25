@@ -2,7 +2,7 @@
 .login-form {
   height: calc(100vh - 350px);
   position: relative;
-  min-height: 350px;
+  min-height: 430px;
 
   .login-msg {
     background-color: $color__orange;
@@ -34,7 +34,7 @@
   }
 
   form {
-    max-width: 350px;
+    max-width: 430px;
     margin: 0 auto;
 
     p:not(:last-child) {

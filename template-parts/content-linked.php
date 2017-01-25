@@ -123,7 +123,12 @@ if($post_id == 0) {
 
                     <!-- Start Author Image -->
                     <div class="col-xs-5 col-md-4">
-                      <?php echo get_avatar( get_the_author_meta( 'ID' ) , 160 ); ?>
+                      <?php
+                      $author_id = get_the_author_meta('ID');
+                      $staff_avatar = get_field('staff_image', 'user_'. $queried_post->post_author);
+                      $size = 'full';
+                      //echo wp_get_attachment_image_url( $staff_avatar, $size );?>
+                      <img src="<?php //echo $staff_avatar['url']; ?>" alt="<?php echo $staff_avatar['alt']; ?>" class="img-responsive">
                     </div>
                     <!-- End Author Image -->
 
@@ -170,7 +175,12 @@ if($post_id == 0) {
 
                 <!-- Start Author Image -->
                 <div class="col-xs-5 col-md-4">
-                  <?php echo get_avatar( get_the_author_meta( 'ID' ) , 160 ); ?>
+                  <?php
+                  $author_id = get_the_author_meta('ID');
+                  $staff_avatar = get_field('staff_image', 'user_'. $queried_post->post_author);
+                  $size = 'full';
+                  // echo wp_get_attachment_image_url( $staff_avatar, $size );?>
+                  <img src="<?php //echo $staff_avatar['url']; ?>" alt="<?php echo $staff_avatar['alt']; ?>" class="img-responsive">
                 </div>
                 <!-- End Author Image -->
 
