@@ -255,6 +255,14 @@ function redirect_homepage_register() {
   endif;
 }
 
+/**
+ * Plugin Modifications
+ */
+
+ add_action( 'admin_init' , 'remove_friends');
+ function remove_friends() {
+   remove_action( 'invfr_form');
+ }
 
 /**
  * Implement the Custom Thumbnail Size

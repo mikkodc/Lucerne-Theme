@@ -83,7 +83,7 @@ if($post_id == 0) {
             <div class="article-options clearfix">
               <?php
                 if($article_type == 1) { ?>
-                  <a href="#<?php //echo get_the_permalink($queried_post); ?>" type="button" class="btn btn-default ajax-link linked-link">View</a>
+                  <a href="#<?php //echo get_the_permalink($queried_post); ?>" type="button" class="btn btn-default ajax-link linked-link">View Article</a>
                 <?php } else { ?>
                   <?php $file = get_field('article_pdf', $queried_post); ?>
                   <a href="<?php echo $file['url']; ?>" target="_blank" type="button" class="btn btn-default">Download</a>
@@ -128,7 +128,7 @@ if($post_id == 0) {
                       $staff_avatar = get_field('staff_image', 'user_'. $queried_post->post_author);
                       $size = 'full';
                       //echo wp_get_attachment_image_url( $staff_avatar, $size );?>
-                      <img src="<?php //echo $staff_avatar['url']; ?>" alt="<?php echo $staff_avatar['alt']; ?>" class="img-responsive">
+                      <img src="<?php echo $staff_avatar['url']; ?>" alt="<?php echo $staff_avatar['alt']; ?>" class="img-responsive">
                     </div>
                     <!-- End Author Image -->
 
@@ -180,7 +180,7 @@ if($post_id == 0) {
                   $staff_avatar = get_field('staff_image', 'user_'. $queried_post->post_author);
                   $size = 'full';
                   // echo wp_get_attachment_image_url( $staff_avatar, $size );?>
-                  <img src="<?php //echo $staff_avatar['url']; ?>" alt="<?php echo $staff_avatar['alt']; ?>" class="img-responsive">
+                  <img src="<?php echo $staff_avatar['url']; ?>" alt="<?php echo $staff_avatar['alt']; ?>" class="img-responsive">
                 </div>
                 <!-- End Author Image -->
 

@@ -51,13 +51,27 @@
 }
 
 @media screen and (max-width: 991px) {
-  .featured-articles {
-    .row {
-      .small {
-        max-height: 500px;
 
-        a {
-          padding-top: 5px;
+  h1 {
+    font-size: 1.2em;
+  }
+
+  #ajax-container {
+    .featured-articles {
+      .row {
+
+        .small {
+          max-height: 500px;
+
+          a {
+            padding-top: 5px;
+          }
+        }
+
+        .large {
+          .meta-title {
+            width: auto;
+          }
         }
       }
     }
@@ -68,7 +82,7 @@
 @media screen and (min-width: 768px) {
 
   .cat-bar.affix {
-    background-color: $color__black;
+    background-color: $color__darkBlue;
 
     ul{
       list-style: none;
@@ -145,10 +159,6 @@
     font-size: 14px;
   }
 
-  h1 {
-    font-size: 1.4em;
-  }
-
 
   //Header
   #reading-list {
@@ -221,6 +231,7 @@
 
     .section-title {
       margin-top: 10px;
+      font-size: 18px;
     }
 
     .row {
@@ -253,7 +264,7 @@
     }
 
     .meta-date {
-      font-size: 12px!important;
+      font-size: 10px!important;
     }
   }
 

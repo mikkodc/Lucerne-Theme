@@ -17,6 +17,8 @@
 <link rel="profile" href="http://gmpg.org/xfn/11">
 
 <?php wp_head(); ?>
+<link rel="icon" href="<?php echo bloginfo('template_url') ?>/library/src/img/favicon.png" type="image/x-icon" />
+<link rel="shortcut icon" href="<?php echo bloginfo('template_url') ?>/library/src/img/favicon.png" type="image/x-icon" />
 </head>
 
 <body <?php body_class(); ?>>
@@ -53,10 +55,10 @@
 
 			<div class="logo-bar">
 				<div class="container">
-					<div class="col-xs-4 col-md-4 text-left back-container">
+					<div class="col-xs-2 col-md-4 text-left back-container">
 						<a class="back back-linked"><span class="glyphicon glyphicon-chevron-left"></span><span class="hidden-xs">BACK</span></a>
 					</div>
-					<div class="col-xs-4 col-md-4">
+					<div class="col-xs-8 col-md-4">
 						<a href="http://www.lucernepartners.com">
 							<img src="<?php echo bloginfo('template_directory'); ?>/library/src/img/Lucerne-Logo-Top120.png" alt="">
 						</a>

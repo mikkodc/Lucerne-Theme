@@ -9,7 +9,7 @@ $("body").on("click",".ajax-link",function(){
   if($(this).hasClass('linked-link')) {
 
     $('.header-type').addClass('linked-article');
-    $(".back-linked").fadeIn(500);
+    $(".back-linked").fadeIn(500).css('display', 'block');
 
     pageType = "linked";
 
@@ -27,7 +27,7 @@ $("body").on("click",".ajax-link",function(){
 
     currId = $(this).data('id');
 
-    $(".back-ajax").fadeIn(500);
+    $(".back-ajax").fadeIn(500).css('display', 'block');
 
   }
 
@@ -99,7 +99,7 @@ var load_introArticle = function(){
     success:function(data) {
 
       //Append data and remove the loading gif
-      $(data).hide().appendTo('#ajax-container').fadeIn(500);
+      $(data).hide().appendTo('#ajax-container').fadeIn(500).css('display', 'block');
       $('#ajax-container .preload-gif').fadeOut(500).remove();
 
       // console.log(data);

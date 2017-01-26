@@ -50,6 +50,7 @@
               letter-spacing: 1px;
               background-color: $color__lightGray;
               padding: 12px;
+              font-size: 13px;
             }
           }
 
@@ -106,7 +107,7 @@
         position: relative;
         display: block;
         overflow: hidden;
-        max-height: 180px;
+        max-height: 160px;
 
         &:not(:last-child) .article-title {
           margin-bottom: 15px;
@@ -135,12 +136,13 @@
       .article-title {
         font-weight: 700;
         margin-top: 10px;
-        @include multi-line(18px, 1.2, 1);
+        font-size: 16px;
       }
 
       &.article-thumb {
         .section-title {
           margin-top: 10px;
+          font-size: 20px;
         }
       }
     }
@@ -197,7 +199,7 @@
     .author-meta {
 
       .author-foreword {
-        font-size: 18px;
+        font-size: 16px;
 
         p {
 

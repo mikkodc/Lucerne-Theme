@@ -21,7 +21,7 @@
       a {
         color: rgba(0,0,0,0.8);
         text-transform: uppercase;
-        font-size: 13px;
+        font-size: 15px;
         font-weight: bold;
         padding: 20px;
         display: inline-block;
@@ -105,7 +105,7 @@
     }
   }
   &.affix {
-    @include admin-sticky-fix(11);
+    @include admin-sticky-fix(10);
   }
 }
 
