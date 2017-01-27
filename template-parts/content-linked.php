@@ -114,51 +114,12 @@ if($post_id == 0) {
 
             </div>
 
-            <?php if($article_type == 2){ ?>
-              <!-- Start Author Meta -->
-              <div class="author-meta row mb-20">
+            <?php if($article_type == 2){
 
-                <div class="author-info col-md-6">
-                  <div class="row">
+              get_template_part('template-parts/template-author'); ?>
 
-                    <!-- Start Author Image -->
-                    <div class="col-xs-5 col-md-4">
-                      <?php
-                      $author_id = get_the_author_meta('ID');
-                      $staff_avatar = get_field('staff_image', 'user_'. $queried_post->post_author);
-                      $size = 'full';
-                      //echo wp_get_attachment_image_url( $staff_avatar, $size );?>
-                      <img src="<?php echo $staff_avatar['url']; ?>" alt="<?php echo $staff_avatar['alt']; ?>" class="img-responsive">
-                    </div>
-                    <!-- End Author Image -->
-
-                    <!-- Start Author Details -->
-                    <div class="col-xs-7 col-md-8">
-                      <h3 class="author-name"><?php echo the_author_meta('user_firstname', $queried_post->post_author); ?>
-                        <?php echo the_author_meta('user_lastname', $queried_post->post_author); ?></h3>
-                      <h3 class="author-title"><?php the_field('staff_title', 'user_'. $queried_post->post_author) ?></h3>
-                      <ul class="no-bullet">
-                        <li>
-                          <span class="glyphicon glyphicon-envelope"></span> <a href="mailto:<?php echo the_author_meta('user_email', $queried_post->post_author); ?>">Email <?php echo the_author_meta('user_firstname', $queried_post->post_author); ?></a>
-                        </li>
-                        <li>
-                          <span class="glyphicon glyphicon-phone"></span> <a href="tel:<?php echo the_author_meta('phone', $queried_post->post_author); ?>"> <?php echo the_author_meta('phone', $queried_post->post_author); ?></a>
-                        </li>
-                      </ul>
-                    </div>
-                    <!-- End Author Details -->
-
-                  </div>
-                </div>
-                <blockquote class="author-foreword col-md-6">
-                  <?php the_field("staff_member_foreword", $queried_post); ?>
-                </blockquote>
-              </div>
-              <!-- End Author Meta -->
               <div class="clearfix"></div>
             <?php } ?>
-
-
 
             <div class="article-excerpt">
               <?php echo $article_type == 1 ? '<p>' .wp_trim_words( get_field("article_summary", $queried_post), 40, ''). '</p>' : get_field("article_content", $queried_post); ?>
@@ -166,48 +127,9 @@ if($post_id == 0) {
           </div>
           <!-- End Main Intro Content -->
 
-          <?php if ($article_type != 2) { ?>
-          <!-- Start Author Meta -->
-          <div class="author-meta row mb-20">
-
-            <div class="author-info col-md-6">
-              <div class="row">
-
-                <!-- Start Author Image -->
-                <div class="col-xs-5 col-md-4">
-                  <?php
-                  $author_id = get_the_author_meta('ID');
-                  $staff_avatar = get_field('staff_image', 'user_'. $queried_post->post_author);
-                  $size = 'full';
-                  // echo wp_get_attachment_image_url( $staff_avatar, $size );?>
-                  <img src="<?php echo $staff_avatar['url']; ?>" alt="<?php echo $staff_avatar['alt']; ?>" class="img-responsive">
-                </div>
-                <!-- End Author Image -->
-
-                <!-- Start Author Details -->
-                <div class="col-xs-7 col-md-8">
-                  <h3 class="author-name"><?php echo the_author_meta('user_firstname', $queried_post->post_author); ?>
-                    <?php echo the_author_meta('user_lastname', $queried_post->post_author); ?></h3>
-                  <h3 class="author-title"><?php the_field('staff_title', 'user_'. $queried_post->post_author) ?></h3>
-                  <ul class="no-bullet">
-                    <li>
-                      <span class="glyphicon glyphicon-envelope"></span> <a href="mailto:<?php echo the_author_meta('user_email', $queried_post->post_author); ?>">Email <?php echo the_author_meta('user_firstname', $queried_post->post_author); ?></a>
-                    </li>
-                    <li>
-                      <span class="glyphicon glyphicon-phone"></span> <a href="tel:<?php echo the_author_meta('phone', $queried_post->post_author); ?>"> <?php echo the_author_meta('phone', $queried_post->post_author); ?></a>
-                    </li>
-                  </ul>
-                </div>
-                <!-- End Author Details -->
-
-              </div>
-            </div>
-            <blockquote class="author-foreword col-md-6">
-              <?php the_field("staff_member_foreword", $queried_post); ?>
-            </blockquote>
-          </div>
-          <!-- End Author Meta -->
-          <?php } ?>
+          <?php if ($article_type != 2) {
+            get_template_part('template-parts/template-author');
+          } ?>
 
           <!-- Start Related Author Posts -->
           <div class="author-related">
