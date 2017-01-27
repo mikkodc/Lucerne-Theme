@@ -27,7 +27,6 @@
   transform: translate(-50%, -50%);
 }
 @mixin multi-line($font-size, $line-height, $lines-to-show) {
-  display: block;
   display: -webkit-box;
   height: $font-size*$line-height*$lines-to-show;
   font-size: $font-size;

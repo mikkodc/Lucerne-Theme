@@ -19,7 +19,5 @@
       <?php //echo $article_type == 1 ? '<p>' .wp_trim_words( get_field("article_summary", $queried_post), 40, ''). '</p>' : wp_trim_words( get_field("article_content", $queried_post), 40, ''); ?>
       <?php echo wp_trim_words( get_field("article_content", $queried_post), 40, ''); ?>
       <?php echo wp_trim_words( get_field("article_summary", $queried_post), 40, '') ?>
-
-
   </p>
 </div>
