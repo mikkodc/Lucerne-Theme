@@ -50,6 +50,7 @@ $("body").on("click",".back",function(){
     //Remove the current value if equals to current page id
     if(currId == articleId) {
       pageHistory.pop();
+
     }
   }
 
@@ -101,6 +102,8 @@ var load_introArticle = function(){
       //Append data and remove the loading gif
       $(data).hide().appendTo('#ajax-container').fadeIn(500).css('display', 'block');
       $('#ajax-container .preload-gif').fadeOut(500).remove();
+
+      init.loadPosts(1);
 
       // console.log(data);
     },
