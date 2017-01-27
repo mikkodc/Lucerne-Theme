@@ -226,15 +226,14 @@ function logout_page() {
 }
 add_action('wp_logout','logout_page');
 
-function redirect_non_logged_users_to_specific_page() {
-
-	// if ( !is_user_logged_in() || !is_page('login') || !is_page('register') ) {
-	if ( !is_user_logged_in()  && !is_page('login') ) {
-
-		wp_redirect( 'http://www.lucernepartners.com');
-    exit;
-	}
-}
+// function redirect_non_logged_users_to_specific_page() {
+//
+// 	if ( !is_user_logged_in()  && !is_page('login') || !is_user_logged_in()  && !is_page('register') ) {
+//
+// 		wp_redirect( 'http://www.lucernepartners.com');
+//     exit;
+// 	}
+// }
 
 add_action( 'template_redirect', 'redirect_non_logged_users_to_specific_page' );
 
@@ -255,15 +254,22 @@ function redirect_homepage_register() {
     exit();
   endif;
 }
+/**
+ * Dashboard Reporting
+ *
+ */
+
+require_once( get_template_directory() . '/inc/dashboard-reporting.php');
 
 /**
  * Plugin Modifications
  */
+// remove_action( 'admin_init', 'invfr_add_pages', 1);
 
- add_action( 'admin_init' , 'remove_friends');
- function remove_friends() {
-   remove_action( 'invfr_form');
- }
+add_action( 'admin_init' , 'remove_friends');
+function remove_friends() {
+	remove_action( 'after_setup_theme', 'invfr_add_pages');
+}
 
 /**
  * Implement the Custom Thumbnail Size
