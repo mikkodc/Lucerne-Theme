@@ -164,7 +164,14 @@ add_filter( 'user_contactmethods', 'additional_contact_methods' );
 /**
  * Remove Admin Bar
  */
-add_filter('show_admin_bar', '__return_false');
+// add_filter('show_admin_bar', '__return_false');
+add_action('after_setup_theme', 'remove_admin_bar');
+
+function remove_admin_bar() {
+	if (!current_user_can('administrator') && !is_admin()) {
+	  show_admin_bar(false);
+	}
+}
 
 /**
  * WP_LOGIN Options
@@ -172,24 +179,29 @@ add_filter('show_admin_bar', '__return_false');
 
 add_action( 'login_form_bottom', 'add_lost_password_link' );
 function add_lost_password_link() {
-	return '<a href="/wp-login.php?action=lostpassword">Forgot your Password?</a>';
+	$siteurl = get_bloginfo('url');
+	return '<a href="'. $siteurl .'/lostpass">Forgot your Password?</a>';
 }
 
 function redirect_login_page() {
   $login_page  = home_url( '/login/' );
+  $register_page  = home_url( '/register/' );
   $page_viewed = basename($_SERVER['REQUEST_URI']);
 
   if( $page_viewed == "wp-login.php" && $_SERVER['REQUEST_METHOD'] == 'GET') {
     wp_redirect($login_page);
     exit;
+  } elseif( $page_viewed == "wp-login.php?action=register" && $_SERVER['REQUEST_METHOD'] == 'GET') {
+    wp_redirect($register_page);
+    exit;
   }
 }
 add_action('init','redirect_login_page');
 
-add_filter( 'lostpassword_url', 'my_lost_password_page', 10, 2 );
-function my_lost_password_page( $lostpassword_url, $redirect ) {
-    return home_url( '/login/?redirect_to=' . $redirect );
-}
+// add_filter( 'lostpassword_url', 'my_lost_password_page', 10, 2 );
+// function my_lost_password_page( $lostpassword_url, $redirect ) {
+//     return home_url( '/login/?redirect_to=' . $redirect );
+// }
 
 function login_failed() {
   $login_page  = home_url( '/login/' );
@@ -213,6 +225,45 @@ function logout_page() {
   exit;
 }
 add_action('wp_logout','logout_page');
+
+function redirect_non_logged_users_to_specific_page() {
+
+	// if ( !is_user_logged_in() || !is_page('login') || !is_page('register') ) {
+	if ( !is_user_logged_in()  && !is_page('login') ) {
+
+		wp_redirect( 'http://www.lucernepartners.com');
+    exit;
+	}
+}
+
+add_action( 'template_redirect', 'redirect_non_logged_users_to_specific_page' );
+
+add_action( 'init', 'blockusers_init' );
+function blockusers_init() {
+	if ( is_admin() && ! current_user_can( 'administrator' ) &&
+	! ( defined( 'DOING_AJAX' ) && DOING_AJAX ) ) {
+		wp_redirect( home_url() );
+		exit;
+	}
+}
+
+add_action( 'shutdown', 'redirect_homepage_register' );
+function redirect_homepage_register() {
+  if( isset( $_POST['register_form'] ) ):
+    // process form, and then
+    wp_redirect( home_url() );
+    exit();
+  endif;
+}
+
+/**
+ * Plugin Modifications
+ */
+
+ add_action( 'admin_init' , 'remove_friends');
+ function remove_friends() {
+   remove_action( 'invfr_form');
+ }
 
 /**
  * Implement the Custom Thumbnail Size

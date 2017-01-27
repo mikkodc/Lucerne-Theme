@@ -67,7 +67,7 @@
 
         <?php
         //Parent Terms
-        $hiterms = get_terms( 'category', array('orderby' => 'name', 'parent' => 0));
+        $hiterms = get_terms( 'category', array('orderby' => 'name', 'parent' => 0, 'hide_empty' => 'true', 'exclude' => 1));
 
           foreach ( $hiterms as $hiterm ) { ?>
             <li><a href="#" data-term="<?php echo $hiterm->term_id; ?>"><?php echo $hiterm->name; ?></a>
