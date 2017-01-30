@@ -17,6 +17,27 @@ if($post_id == 0) {
   <?php } else { ?>
     <div class="linked-article clearfix">
       <div class="container">
+        <?php
+        if (!isset($_COOKIE['count'])) {
+        echo "Welcome! This is the first time you have viewed this page.";
+        setPostViews($current_article);
+        $cookie = 1;
+        setcookie("count", $cookie);
+    }
+    else {
+        $cookie = $_COOKIE['count']++;
+        setcookie("count", $cookie);
+        echo "You have viewed this page". $_COOKIE['count'] ."times. ";
+      }// end else
+        // if ($visits > 1) {
+        //   echo("This is visit number $visits.");
+        //
+        // } else { // First visit
+        //   echo('Welcome to my Website! Click here for a tour!');
+        // }
+
+        echo getPostViews($current_article);
+        ?>
         <div class="col-md-8 large" style="background: url('<?php echo get_the_post_thumbnail_url($current_article); ?>') center no-repeat">
         </div>
         <div class="col-md-4 hidden-xs hidden-sm small article-thumb">

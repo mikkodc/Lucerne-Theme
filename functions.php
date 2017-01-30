@@ -254,22 +254,13 @@ function redirect_homepage_register() {
     exit();
   endif;
 }
+
 /**
  * Dashboard Reporting
  *
  */
 
 require_once( get_template_directory() . '/inc/dashboard-reporting.php');
-
-/**
- * Plugin Modifications
- */
-// remove_action( 'admin_init', 'invfr_add_pages', 1);
-
-add_action( 'admin_init' , 'remove_friends');
-function remove_friends() {
-	remove_action( 'after_setup_theme', 'invfr_add_pages');
-}
 
 /**
  * Implement the Custom Thumbnail Size
