@@ -19,7 +19,7 @@ if($post_id == 0) {
       <div class="container">
         <?php
         if (!isset($_COOKIE['count'])) {
-        echo "Welcome! This is the first time you have viewed this page.";
+        // echo "Welcome! This is the first time you have viewed this page.";
         setPostViews($current_article);
         $cookie = 1;
         setcookie("count", $cookie);
@@ -27,7 +27,7 @@ if($post_id == 0) {
     else {
         $cookie = $_COOKIE['count']++;
         setcookie("count", $cookie);
-        echo "You have viewed this page". $_COOKIE['count'] ."times. ";
+        // echo "You have viewed this page". $_COOKIE['count'] ."times. ";
       }// end else
         // if ($visits > 1) {
         //   echo("This is visit number $visits.");
