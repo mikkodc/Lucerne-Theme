@@ -5,6 +5,33 @@
  */
 
 //Cookies Setup
+
+// Setup Visit Count
+function getPostVisits($postID){
+  $count_key = 'post_visits_count';
+  $count = get_post_meta($postID, $count_key, true);
+  if($count=='1' || $count == ''){
+      delete_post_meta($postID, $count_key);
+      add_post_meta($postID, $count_key, '1');
+      return $count." Visit";
+  }
+  return $count.' Visits';
+}
+
+function setPostVisits($postID) {
+  $count_key = 'post_visits_count';
+  $count = get_post_meta($postID, $count_key, true);
+  if($count==''){
+      $count = 1;
+      delete_post_meta($postID, $count_key);
+      add_post_meta($postID, $count_key, '1');
+  }else{
+      $count++;
+      update_post_meta($postID, $count_key, $count);
+  }
+}
+
+// Setup View Count
 function getPostViews($postID){
   $count_key = 'post_views_count';
   $count = get_post_meta($postID, $count_key, true);
@@ -31,6 +58,69 @@ function setPostViews($postID) {
 // Remove issues with prefetching adding extra views
 remove_action( 'wp_head', 'adjacent_posts_rel_link_wp_head', 10, 0);
 
+//Function for Displaying Reports
+function displayReports($q) { ?>
+  <ul>
+  <?php
+  foreach ($q as $key => $value) {
+    echo "<li>" .$key;
+    $view_total = 0;
+
+    foreach ($value as $key => $post_view) {
+      $view_total+= $post_view;
+    }
+    echo "<span> (" .$view_total. " Visits)</span></li>";
+  }
+  ?>
+  </ul>
+<?php }
+
+//Function for processing Reports Array
+function articlesReport($post_meta_key, $label) {
+  // args
+  $args = array(
+  	'numberposts'	=> -1,
+  );
+
+  // query
+  $the_query = new WP_Query( $args );
+  if( $the_query->have_posts() ){
+    $page_view_count = array();
+    while( $the_query->have_posts() ) {
+      $the_query->the_post();
+
+      $pagevisit = get_post_meta(get_the_ID(), $post_meta_key, true);
+
+      if ($pagevisit != 0) {
+        $page_view_count[] = array(
+          'post_title' => get_the_title(),
+          'post_view' => $pagevisit,
+          'post_permalink' => get_the_permalink()
+        );
+      }
+      ?>
+    <?php }
+  }
+  wp_reset_query();
+
+  array_multisort($page_view_count);
+  $sorted = val_sort($page_view_count, 'post_view'); ?>
+
+  <!-- <pre><?php //print_r($sorted); ?></pre> -->
+  <?php //var_dump($sorted); ?>
+  <ul>
+    <?php foreach ($sorted as $postname) { ?>
+      <li>
+        <a href="<?= $postname['post_permalink']; ?>">
+          <?php echo $postname['post_title']; ?>
+        </a><span><?php echo "(". $postname['post_view'] . " " . $label ."s)"; ?></span>
+      </li>
+    <?php } ?>
+  </ul>
+<?php }
+
+
+// Setup Sorting (High to Low)
 function val_sort($array,$key) {
 
 	//Loop through and get the values of our specified key
@@ -40,7 +130,7 @@ function val_sort($array,$key) {
 
 	// print_r($b);
 
-	krsort($b);
+	arsort($b);
 
 	// echo '<br />';
 	// print_r($b);
@@ -49,8 +139,12 @@ function val_sort($array,$key) {
 		$c[] = $array[$k];
 	}
 
-	return $c;
+  $newArray = array_slice($c, 0, 5, true);
+
+	return $newArray;
 }
+
+
 
 include( get_template_directory() . '/inc/widget-reporting/last-login.php');
 include( get_template_directory() . '/inc/widget-reporting/last-viewed-widget.php');
