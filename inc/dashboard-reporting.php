@@ -130,7 +130,7 @@ function val_sort($array,$key) {
 
 	// print_r($b);
 
-	arsort($b);
+	krsort($b);
 
 	// echo '<br />';
 	// print_r($b);
