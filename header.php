@@ -42,6 +42,7 @@
 		</div>
 		<!-- End Sliding Reading List -->
 
+		<?php if(is_user_logged_in()) {?>
 		<div class="top-bar">
 			<div class="container-fluid">
 				<ul class="inline-list pull-right">
@@ -49,9 +50,10 @@
 				</ul>
 			</div>
 		</div>
+		<?php } ?>
 		<!-- Start Site Header -->
 
-		<header id="main-header">
+		<header id="main-header" <?php echo !is_user_logged_in() ? "style='margin-top:0!important'" : '';?>>
 
 			<div class="logo-bar">
 				<div class="container">

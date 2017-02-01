@@ -17,7 +17,7 @@ function fb_list_authors() {
 
     $post_meta = get_userdata( $author->ID );
     $name = "$post_meta->first_name $post_meta->last_name";
-    $date = date("M d, Y H:i a", $post_meta->last_login);
+    $date = $post_meta->last_login;
 
     $users[] = array(
       'user_last_login' =>  $date,
@@ -28,11 +28,16 @@ function fb_list_authors() {
     );
   }
 
+  // $date = date("M d, Y H:i a", $post_meta->last_login);
+
   array_multisort($users);
   $sorted = val_sort($users, 'user_last_login');
 
   foreach ($sorted as $authors) {
-    echo "<li>" .$authors['user_fullname']. " - " . $authors['user_last_login']. "</li>";
+    $last_login = date("M d, Y H:i a", $authors['user_last_login']);
+    if($last_login != null) {
+      echo "<li>" .$authors['user_fullname']. " - " . $last_login . "</li>";
+    }
   }
 
   // echo "<pre>";

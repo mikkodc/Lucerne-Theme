@@ -11,6 +11,8 @@ if($post_id == 0) {
   $queried_post = get_post($post_id);
   $current_article = $queried_post->ID;
 
+  $post_object = get_field('assign_staff_member', $queried_post);
+
   if($type == "linked") { ?>
     <iframe src="<?php the_field("article_link", $current_article) ?>" class="linked-frame"></iframe>
 
@@ -182,17 +184,34 @@ if($post_id == 0) {
 
           <!-- Start Related Author Posts -->
           <div class="author-related">
-            <h3 class="section-title">More from <?php echo the_author_meta('user_firstname', $queried_post->post_author); ?></h3>
-            <div class="row">
             <?php
+            $staff_fullname = $post_object->post_title;
+            $staff_first_explode = explode(' ',trim($staff_fullname));
+
+            if ($post_object) {
+              $args = array(
+                'post_type' => 'post',
+                'posts_per_page' => '3',
+                'post__not_in' => array($current_article),
+                'meta_key'		=> 'assign_staff_member',
+                'meta_value'	=> $post_object->ID
+              );
+            } else {
               $args = array(
                 'post_type' => 'post',
                 'posts_per_page' => '3',
                 'post__not_in' => array($current_article),
                 'author' => $queried_post->post_author,
               );
-              $articleQuery = get_posts($args);
-              foreach($articleQuery as $artQueries) { ?>
+            }
+
+            $articleQuery = get_posts($args);
+
+            if($articleQuery != NULL) { ?>
+
+            <h3 class="section-title">More from <?php echo $post_object ? $staff_first_explode[0] : the_author_meta('user_firstname', $queried_post->post_author); ?></h3>
+            <div class="row">
+              <?php foreach($articleQuery as $artQueries) { ?>
                 <div class="col-sm-6 col-md-4 article-item">
                   <a class="ajax-link" data-id="<?php echo $artQueries->ID ?>">
                     <img src="<?php echo get_the_post_thumbnail_url($artQueries->ID, 'article-thumb'); ?>" alt="" class="img-responsive">
@@ -215,6 +234,7 @@ if($post_id == 0) {
             </div>
           </div>
           <!-- End Related Author Posts -->
+          <?php } ?>
 
           <div class="visible-xs visible-sm small article-thumb">
             <h2 class="section-title">

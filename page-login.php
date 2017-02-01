@@ -21,7 +21,7 @@ $login  = (isset($_GET['login']) ) ? $_GET['login'] : 0;
       'remember' => false,
       'id_username' => 'user',
       'id_password' => 'pass',
-      'label_username' => __( 'Email Address' ),
+      'label_username' => __( 'Username' ),
       'label_log_in' => __( 'Login >' ),
     );
     wp_login_form( $args ); ?>

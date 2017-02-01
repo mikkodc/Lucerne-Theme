@@ -43,11 +43,32 @@ function popular_category_container() {
   }
   wp_reset_query();
 
-  array_multisort($count);
-  $count = val_sort($page_view_count, 'post_visits_count');
-  displayReports($q); ?>
+  $added_views = array();
+  foreach ($q as $key => $value) {
 
-  <!-- <pre><?php //print_r($q); ?></pre> -->
+    $view_total = 0;
 
+    foreach ($value as $post_view) {
+      $view_total+= $post_view;
+    }
 
-<?php } ?>
+    $added_views[] = array(
+      'view_total' => $view_total,
+      'cat_name' => $key
+    );
+  }
+
+  array_multisort($added_views);
+  $count = val_sort($added_views, 'view_total');
+
+  echo "<ul>";
+  foreach ($count as $category) {
+      echo "<li>" .$category['cat_name']. " (" . $category['view_total'] . " Views)</li>";
+  }
+  echo "</ul>";
+
+  // echo '<pre>';
+  // print_r($count);
+  // echo '</pre>';
+
+} ?>

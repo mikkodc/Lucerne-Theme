@@ -24,22 +24,47 @@ function popular_author_container() {
     while( $the_query->have_posts() ) {
       $the_query->the_post();
 
-      $count = get_post_meta(get_the_ID(), 'post_visits_count', true);
-      $author = get_the_author();
+      $post_count_ID = get_the_ID();
+      $count = get_post_meta($post_count_ID, 'post_visits_count', true);
+      $staff_object = get_field('assign_staff_member', $post_count_ID);
+      $staff_member = $staff_object->post_title;
 
-      $q[$author][] = $count; // Create an array with the category names and post titles
+      if($staff_member) {
+        $b = $staff_member;
+      } else {
+        $b = get_the_author();
+      }
+
+      $q[$b][] = $count; // Create an array with the category names and post titles
 
     }
-
   }
   wp_reset_query();
 
+  $added_views = array();
+  foreach ($q as $key => $value) {
 
-  // array_multisort($page_view_count);
-  // $sorted = val_sort($page_view_count, 'post_view');
-  displayReports($q);
-  ?>
+    $view_total = 0;
 
-  <!-- <pre><?php //print_r($q); ?></pre> -->
+    foreach ($value as $post_view) {
+      $view_total+= $post_view;
+    }
 
-<?php } ?>
+    $added_views[] = array(
+      'view_total' => $view_total,
+      'auth_name' => $key
+    );
+  }
+
+  array_multisort($added_views);
+  $count = val_sort($added_views, 'view_total');
+
+  echo "<ul>";
+  foreach ($count as $category) {
+      echo "<li>" .$category['auth_name']. " (" . $category['view_total'] . " Views)</li>";
+  }
+  echo "</ul>";
+
+
+
+} ?>
