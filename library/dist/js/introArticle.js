@@ -2,8 +2,13 @@ var articleId;
 var currId;
 var pageHistory = [0];
 var pageType = "";
+var buttonType = "";
 
 $("body").on("click",".ajax-link",function(){
+
+  if($(this).hasClass('btn-view-download')) {
+    buttonType = "view-download";
+  }
 
   //If view article button click
   if($(this).hasClass('linked-link')) {
@@ -41,6 +46,9 @@ $("body").on("click",".ajax-link",function(){
 
 $("body").on("click",".back",function(){
 
+  //Reset Button Type
+  buttonType = "";
+
   //Changed the header back to its normal state
   if($('.header-type').hasClass('linked-article')) {
     $('.header-type').removeClass('linked-article');
@@ -71,12 +79,6 @@ $("body").on("click",".back",function(){
 
 });
 
-//Testing JS
-$("body").on("click","#test",function(){
-  var testValue = $(this).parent().find('.linked-article').data('id');
-  alert(testValue);
-});
-
 var load_introArticle = function(){
   $.ajax({
     type: "get",
@@ -84,6 +86,7 @@ var load_introArticle = function(){
       'action': 'intro_article',
       article: articleId,
       articleType : pageType,
+      button : buttonType,
     },
     dataType: "html",
     url: ajax_object.ajax_url,
@@ -112,5 +115,3 @@ var load_introArticle = function(){
     }
   });
 };
-
-// load_introArticle();

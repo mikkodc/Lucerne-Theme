@@ -235,7 +235,7 @@ add_action('wp_logout','logout_page');
 // 	}
 // }
 
-add_action( 'template_redirect', 'redirect_non_logged_users_to_specific_page' );
+// add_action( 'template_redirect', 'redirect_non_logged_users_to_specific_page' );
 
 add_action( 'init', 'blockusers_init' );
 function blockusers_init() {
@@ -260,12 +260,12 @@ function redirect_homepage_register() {
  *
  */
 
-// function set_newuser_cookie() {
-// 	if ( !is_admin() && !isset($_COOKIE['cookie'])) {
-// 		setcookie( 'cookie', 0, time()+3600*24*100, COOKIEPATH, COOKIE_DOMAIN, false);
-// 	}
-// }
-// add_action( 'init', 'set_newuser_cookie');
+function set_newuser_cookie() {
+	if ( !is_admin() && !isset($_COOKIE['count'])) {
+		setcookie( 'count', 0, time()+3600*24*100, COOKIEPATH, COOKIE_DOMAIN, false);
+	}
+}
+add_action( 'init', 'set_newuser_cookie');
 
 require_once( get_template_directory() . '/inc/dashboard-reporting.php');
 

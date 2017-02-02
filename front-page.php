@@ -12,7 +12,6 @@
  * @package lucerne
  */
 get_header(); ?>
-
   <!-- Start Ajax Container -->
   <div id="ajax-container">
     <?php get_template_part( 'template-parts/content-front' ); ?>

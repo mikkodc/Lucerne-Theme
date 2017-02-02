@@ -2,6 +2,7 @@
 //Get post ID from Ajax
 $post_id = $_GET['article'];
 $type = $_GET['articleType'];
+$button = $_GET['button'];
 
 if($post_id == 0) {
   get_template_part( 'template-parts/content-front' );
@@ -13,66 +14,24 @@ if($post_id == 0) {
 
   $post_object = get_field('assign_staff_member', $queried_post);
 
+  if($button == "view-download") {
+    setPostViews($current_article);
+    $button = "";
+  }
+
   if($type == "linked") { ?>
     <iframe src="<?php the_field("article_link", $current_article) ?>" class="linked-frame"></iframe>
 
   <?php } else { ?>
     <div class="linked-article clearfix">
       <div class="container">
-        <?php
-
-    //     if (!isset($_COOKIE['count'])) {
-    //
-    //     $cookie = 1;
-    //     setcookie("count", $cookie, time()+31556926);
-    //     if (isset($_COOKIE['count'])) {
-    //       echo "Welcome! This is the first time you have visited this page. Cookie Count". $cookie;
-    //     }
-    // }
-    // else {
-    //     $cookie = $_COOKIE['count']++;
-    //     setcookie("count", $cookie);
-    //     echo "You have visited this page". $_COOKIE['count'] ."times. ";
-    //   }// end else
-        // if ($visits > 1) {
-        //   echo("This is visit number $visits.");
-        //
-        // } else { // First visit
-        //   echo('Welcome to my Website! Click here for a tour!');
-        // }
-        setPostVisits($current_article);
-        // echo getPostVisits($current_article);
-        // echo getPostViews($current_article);
-        ?>
+        <?php setPostVisits($current_article); ?>
         <div class="col-md-8 large" style="background: url('<?php echo get_the_post_thumbnail_url($current_article); ?>') center no-repeat">
         </div>
         <div class="col-md-4 hidden-xs hidden-sm small article-thumb">
           <h2 class="section-title">
             Related Articles
-            <?php
-            // $name = "visitCount";
-            //
-            // if (!isset($_COOKIE[$name])) {
-            //     $_COOKIE[$name] = 0;
-            // }
-            // $_COOKIE[$name] = 1 + (int) max(0, $_COOKIE[$name]);
-            // $result = setcookie($name, $_COOKIE[$name]);
-            //
-            // echo $_COOKIE[$name];
-            // $visits = $_COOKIE['cookie'] + 1;
-            // setcookie('cookie', $visits, time()+3600*24*365, COOKIEPATH, COOKIE_DOMAIN, false);
-            //
-            // if ($visits > 1) {
-            //   echo("This is visit number $visits.");
-            // } else { // First visit
-            //   setPostVisits($current_article);
-            //   echo getPostVisits($current_article);
-            //   echo getPostViews($current_article);
-            //   $visits = $_COOKIE['cookie'] + 1;
-            //   setcookie('cookie', $visits, time()+3600*24*365, COOKIEPATH, COOKIE_DOMAIN, false);
-            // }
-            // echo "Value of cookie: " . $visits;
-            ?>
+            <span><?php echo getPostViews($current_article); ?></span>
           </h2>
           <?php
           $args = array(
@@ -136,7 +95,7 @@ if($post_id == 0) {
                 if($article_type == 1) { ?>
                   <a href="#<?php //echo get_the_permalink($queried_post); ?>" type="button" class="btn btn-default btn-view-download ajax-link linked-link">View Article</a>
                 <?php } else { ?>
-                  <?php $file = get_field('article_pdf', $queried_post); ?>
+                  <!-- <?php $file = get_field('article_pdf', $queried_post); ?> -->
                   <a href="<?php echo $file['url']; ?>" target="_blank" type="button" class="btn btn-default btn-view-download">Download</a>
                   <!-- Direct Download -->
                   <!-- <a href="<?php //echo $file['url']; ?>" download="<?php //echo $file['filename']; ?>" type="button" class="btn btn-default">Download</a> -->
