@@ -4,6 +4,11 @@ var pageHistory = [0];
 var pageType = "";
 var buttonType = "";
 
+$("body").on("click",".btn-view-download",function(){
+  buttonType = "view-download";
+  load_introArticle();
+});
+
 $("body").on("click",".ajax-link",function(){
 
   if($(this).hasClass('btn-view-download')) {
