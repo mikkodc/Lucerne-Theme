@@ -31,7 +31,6 @@ if($post_id == 0) {
         <div class="col-md-4 hidden-xs hidden-sm small article-thumb">
           <h2 class="section-title">
             Related Articles
-            <span><?php echo getPostViews($current_article); ?></span>
           </h2>
           <?php
           $args = array(
