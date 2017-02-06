@@ -14,6 +14,7 @@ get_header(); ?>
 		$article_type = get_field("article_type");
 
 		//Query the post
+		$post_id = get_the_ID();
 	  $queried_post = get_post($post_id);
 	  $current_article = $queried_post->ID;
 
@@ -38,7 +39,7 @@ get_header(); ?>
 	          $query = get_posts($args);
 	          foreach($query as $queries) { ?>
 	            <?php //echo var_dump($queries); ?>
-	            <a class="ajax-link" data-id="<?php echo $queries->ID; ?>">
+	            <a href="<?php echo get_permalink($queries->ID); ?>">
 	              <img src="<?php echo get_the_post_thumbnail_url($queries->ID); ?>" alt="" class="img-responsive">
 	              <div class="meta-overlay">
 	                <div class="meta-date">
@@ -167,7 +168,7 @@ get_header(); ?>
 	            <div class="row">
 	              <?php foreach($articleQuery as $artQueries) { ?>
 	                <div class="col-sm-6 col-md-4 article-item">
-	                  <a class="ajax-link" data-id="<?php echo $artQueries->ID ?>">
+	                  <a href="<?php echo get_permalink($artQueries->ID); ?>">
 	                    <img src="<?php echo get_the_post_thumbnail_url($artQueries->ID, 'article-thumb'); ?>" alt="" class="img-responsive">
 	                    <div class="meta-overlay">
 	                      <div class="meta-date">
@@ -181,7 +182,7 @@ get_header(); ?>
 	                      </div>
 	                    </div>
 	                  </a>
-	                  <h4 class="article-title"><a class="ajax-link" data-id="<?php echo $artQueries->ID ?>"><?php echo $artQueries->post_title; ?></a></h4>
+	                  <h4 class="article-title"><a href="<?php echo get_permalink($artQueries->ID); ?>"><?php echo $artQueries->post_title; ?></a></h4>
 	                </div>
 	              <?php }
 	            ?>
@@ -206,7 +207,7 @@ get_header(); ?>
 	            foreach($query as $queries) { ?>
 	              <?php //echo var_dump($queries); ?>
 	              <div class="col-sm-6">
-	                <a class="ajax-link" data-id="<?php echo $queries->ID; ?>">
+	                <a href="<?php get_permalink($queries->ID); ?>">
 	                <img src="<?php echo get_the_post_thumbnail_url($queries->ID); ?>" alt="" class="img-responsive">
 	                <div class="meta-overlay">
 	                  <div class="meta-date">
@@ -229,3 +230,6 @@ get_header(); ?>
 
 //get_sidebar();
 get_footer(); ?>
+<script>
+  var templateDir = "<?php bloginfo('template_directory') ?>";
+</script>

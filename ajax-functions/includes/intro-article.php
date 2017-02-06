@@ -19,7 +19,9 @@ class introArticle {
 
 	public function intro_article() {
 
-		get_template_part( 'template-parts/content-linked' );
+		// get_template_part( 'template-parts/content-linked' );
+
+		echo "Hello";
 
 		die();
 

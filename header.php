@@ -28,7 +28,7 @@
 	$article_type = get_field("article_type");
 ?>
 
-	<div class="header-type clearfix <?php echo $article_type == 1 ? "linked-article" : "" ?>">
+	<div class="header-type clearfix">
 
 		<!-- Start Sliding Reading List -->
 		<div id="reading-list" class="text-light close">

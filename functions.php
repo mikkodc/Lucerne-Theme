@@ -121,7 +121,8 @@ function lucerne_scripts() {
 
 	//Enqueue Custom Scripts
 	wp_enqueue_script( 'custom-script', get_template_directory_uri() . '/library/dist/js/all.min.js', array(), '1', true );
-	wp_enqueue_script( 'intro-script', get_template_directory_uri() . '/library/dist/js/introArticle.js', array(), '1', true );
+	// wp_enqueue_script( 'intro-script', get_template_directory_uri() . '/library/dist/js/introArticle.js', array(), '1', true );
+	wp_enqueue_script( 'linked-script', get_template_directory_uri() . '/library/dist/js/linkedArticle.js', array(), '1', true );
 	wp_enqueue_script( 'load-script', get_template_directory_uri() . '/library/dist/js/infiniteLoad.js', array(), '1', true );
 	wp_enqueue_script( 'search-script', get_template_directory_uri() . '/library/dist/js/searchFilter.js', array(), '1', true );
 	wp_enqueue_script( 'reading-list-script', get_template_directory_uri() . '/library/dist/js/readingList.js', array(), '1', true );

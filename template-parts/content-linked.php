@@ -42,7 +42,7 @@ if($post_id == 0) {
           $query = get_posts($args);
           foreach($query as $queries) { ?>
             <?php //echo var_dump($queries); ?>
-            <a class="ajax-link" data-id="<?php echo $queries->ID; ?>">
+            <a href="<?php the_permalink(); ?>">
               <img src="<?php echo get_the_post_thumbnail_url($queries->ID); ?>" alt="" class="img-responsive">
               <div class="meta-overlay">
                 <div class="meta-date">
@@ -171,7 +171,7 @@ if($post_id == 0) {
             <div class="row">
               <?php foreach($articleQuery as $artQueries) { ?>
                 <div class="col-sm-6 col-md-4 article-item">
-                  <a class="ajax-link" data-id="<?php echo $artQueries->ID ?>">
+                  <a href="<?php get_permalink($artQueries->ID); ?>">
                     <img src="<?php echo get_the_post_thumbnail_url($artQueries->ID, 'article-thumb'); ?>" alt="" class="img-responsive">
                     <div class="meta-overlay">
                       <div class="meta-date">
@@ -185,7 +185,7 @@ if($post_id == 0) {
                       </div>
                     </div>
                   </a>
-                  <h4 class="article-title"><a class="ajax-link" data-id="<?php echo $artQueries->ID ?>"><?php echo $artQueries->post_title; ?></a></h4>
+                  <h4 class="article-title"><a href="<?php get_permalink($artQueries->ID); ?>"><?php echo $artQueries->post_title; ?></a></h4>
                 </div>
               <?php }
             ?>
@@ -210,7 +210,7 @@ if($post_id == 0) {
             foreach($query as $queries) { ?>
               <?php //echo var_dump($queries); ?>
               <div class="col-sm-6">
-                <a class="ajax-link" data-id="<?php echo $queries->ID; ?>">
+                <a href="">
                 <img src="<?php echo get_the_post_thumbnail_url($queries->ID); ?>" alt="" class="img-responsive">
                 <div class="meta-overlay">
                   <div class="meta-date">
