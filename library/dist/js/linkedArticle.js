@@ -4,21 +4,25 @@ var pageHistory = [0];
 var pageType = "";
 var buttonType = "";
 
-$("body").on("click",".ajax-link",function(){
-
+$("body").on("click",".btn-view-download",function(){
   articleId = $(this).data('id');
-  buttonType = "view-download";
   currId = articleId;
-  pageType = "linked";
-  // $('.header-type').addClass('linked-article');
-  // $(".back-linked").fadeIn(500);
-  // load_introArticle();
+
+  if($(this).hasClass('ajax-link')) {
+    pageType = "linked";
+    $('.header-type').addClass('linked-article');
+    $(".back-linked").fadeIn(500);
+    load_introArticle();
+  } else {
+    add_view();
+  }
+
 });
 
 $("body").on("click",".back",function(){
 
   //Reset Button Type
-  buttonType = "";
+  buttonType = "back";
   currId = articleId;
 
   if($('.header-type').hasClass('linked-article')) {
@@ -84,9 +88,27 @@ function load_introArticle() {
       $(data).hide().appendTo('#ajax-container').fadeIn(500).css('display', 'block');
       $('#ajax-container .preload-gif').fadeOut(500).remove();
 
-      init.loadPosts(1);
-
       // console.log(data);
+    },
+    error: function(errorThrown){
+      console.log(errorThrown);
+    }
+  });
+};
+
+function add_view() {
+  $.ajax({
+    type: "get",
+    data: {
+      'action': 'add_view',
+      article: articleId,
+      articleType : pageType,
+      button : buttonType,
+    },
+    dataType: "html",
+    url: ajax_object.ajax_url,
+    success:function(data) {
+      console.log(data);
     },
     error: function(errorThrown){
       console.log(errorThrown);

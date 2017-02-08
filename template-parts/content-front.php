@@ -26,7 +26,7 @@
           $the_query->the_post(); ?>
 
           <div class="col-md-<?php echo $counter == 0 ? '8 large' : '4 small' ?>">
-            <a class="ajax-link" data-id="<?php echo get_the_ID(); ?>">
+            <a href="<?php echo get_permalink($the_query->ID) ?>" data-id="<?php echo get_the_ID(); ?>">
               <img src="<?php the_post_thumbnail_url(); ?>" alt="">
               <div class="meta-overlay">
                 <h2 class="meta-title"><?php the_title(); ?></h2>

@@ -4,9 +4,9 @@ $post_id = $_GET['article'];
 $type = $_GET['articleType'];
 $button = $_GET['button'];
 
-if($post_id == 0) {
-  get_template_part( 'template-parts/content-front' );
-} else {
+// if($post_id == 0) {
+//   get_template_part( 'template-parts/content-front' );
+// } else {
 
   //Query the post
   $queried_post = get_post($post_id);
@@ -19,7 +19,9 @@ if($post_id == 0) {
     $button = "";
   }
 
-  if($type == "linked") { ?>
+  if($type == "linked") {
+    setPostViews($current_article);
+    $button = ""; ?>
     <iframe src="<?php the_field("article_link", $current_article) ?>" class="linked-frame"></iframe>
 
   <?php } else { ?>
@@ -30,7 +32,7 @@ if($post_id == 0) {
         </div>
         <div class="col-md-4 hidden-xs hidden-sm small article-thumb">
           <h2 class="section-title">
-            Related Articles <?php echo getPostVisits($current_article); echo getPostViews($current_article); ?>
+            Related Articles <?php //echo getPostVisits($current_article); echo getPostViews($current_article); ?>
           </h2>
           <?php
           $args = array(
@@ -42,7 +44,7 @@ if($post_id == 0) {
           $query = get_posts($args);
           foreach($query as $queries) { ?>
             <?php //echo var_dump($queries); ?>
-            <a href="<?php the_permalink(); ?>">
+            <a href="<?php echo get_permalink($queries->ID); ?>">
               <img src="<?php echo get_the_post_thumbnail_url($queries->ID); ?>" alt="" class="img-responsive">
               <div class="meta-overlay">
                 <div class="meta-date">
@@ -92,10 +94,10 @@ if($post_id == 0) {
             <div class="article-options clearfix">
               <?php
                 if($article_type == 1) { ?>
-                  <a data-id="<?php echo $artQueries->ID ?>" type="button" class="btn btn-default btn-view-download ajax-link linked-link">View Article</a>
+                  <a data-id="<?php echo $artQueries->ID ?>" type="button" class="btn btn-default btn-view-download ajax-link">View Article</a>
                 <?php } else { ?>
                   <!-- <?php $file = get_field('article_pdf', $queried_post); ?> -->
-                  <a href="<?php echo $file['url']; ?>" target="_blank" type="button" class="btn btn-default btn-view-download">Download</a>
+                  <a href="<?php echo $file['url']; ?>" data-id="<?php echo $artQueries->ID ?>" target="_blank" type="button" class="btn btn-default btn-view-download">Download</a>
                   <!-- Direct Download -->
                   <!-- <a href="<?php //echo $file['url']; ?>" download="<?php //echo $file['filename']; ?>" type="button" class="btn btn-default">Download</a> -->
                 <?php }
@@ -228,5 +230,5 @@ if($post_id == 0) {
       </div> <!-- End Container -->
     </div> <!-- End Linked Article -->
   <?php }
-  die();
-} ?>
+  // die();
+// } ?>

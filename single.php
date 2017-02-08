@@ -28,7 +28,7 @@ get_header(); ?>
 	        </div>
 	        <div class="col-md-4 hidden-xs hidden-sm small article-thumb">
 	          <h2 class="section-title">
-	            Related Articles  <?php echo getPostVisits($current_article); echo getPostViews($current_article); ?>
+	            Related Articles  <?php //echo getPostVisits($current_article); echo getPostViews($current_article); ?>
 	          </h2>
 	          <?php
 	          $args = array(
@@ -92,7 +92,7 @@ get_header(); ?>
 	                  <a data-id="<?php echo $post_id ?>" href="#<?php //echo get_the_permalink($queried_post); ?>" type="button" class="btn btn-default btn-view-download ajax-link linked-link">View Article</a>
 	                <?php } else { ?>
 	                  <!-- <?php $file = get_field('article_pdf', $queried_post); ?> -->
-	                  <a href="<?php echo $file['url']; ?>" target="_blank" type="button" class="btn btn-default btn-view-download">Download</a>
+	                  <a href="<?php echo $file['url']; ?>" data-id="<?php echo $post_id ?>" target="_blank" type="button" class="btn btn-default btn-view-download">Download</a>
 	                  <!-- Direct Download -->
 	                  <!-- <a href="<?php //echo $file['url']; ?>" download="<?php //echo $file['filename']; ?>" type="button" class="btn btn-default">Download</a> -->
 	                <?php }
@@ -193,7 +193,7 @@ get_header(); ?>
 
 	          <div class="visible-xs visible-sm small article-thumb">
 	            <h2 class="section-title">
-	              Related Articles <?php echo getPostVisits($current_article); echo getPostViews($current_article); ?>
+	              Related Articles <?php //echo getPostVisits($current_article); echo getPostViews($current_article); ?>
 	            </h2>
 	            <div class="row">
 	            <?php
