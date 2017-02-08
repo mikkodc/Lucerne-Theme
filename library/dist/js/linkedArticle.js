@@ -5,44 +5,56 @@ var pageType = "";
 var buttonType = "";
 
 $("body").on("click",".btn-view-download",function(){
-  // articleID = $(this).
+  articleId = $(this).data('id');
+  buttonType = 'view-download';
+  currId = articleId;
+  pageType = "linked";
+  $('.header-type').addClass('linked-article');
+  $(".back-linked").fadeIn(500);
   load_introArticle();
 });
 
-// $("body").on("click",".back",function(){
-//
-//   //Reset Button Type
-//   buttonType = "";
-//
-//   //Changed the header back to its normal state
-//   if($('.header-type').hasClass('linked-article')) {
-//     $('.header-type').removeClass('linked-article');
-//     $(".back-linked").fadeOut(500);
-//     pageType = "";
-//   } else {
-//     //Remove the current value if equals to current page id
-//     if(currId == articleId) {
-//       pageHistory.pop();
-//
-//     }
-//   }
-//
-//   if(articleId == 0) {
-//     articleId = pageHistory.push(0);
-//     $(".back").fadeOut(500);
-//
-//   } else {
-//     articleId = pageHistory.pop();
-//     if(articleId == 0) {
-//       $(".back").fadeOut(500);
-//     }
-//   }
-//
-//   load_introArticle();
-//
-//   // alert('Current page ID is '+ currId +' Article ID is '+ articleId +' Page history now contains '+ pageHistory);
-//
-// });
+$("body").on("click",".back",function(){
+
+  //Reset Button Type
+  buttonType = "";
+  currId = articleId;
+
+  if($('.header-type').hasClass('linked-article')) {
+    $('.header-type').removeClass('linked-article');
+    $(".back-linked").fadeOut(500);
+    pageType = "";
+  }
+
+  // //Changed the header back to its normal state
+  // if($('.header-type').hasClass('linked-article')) {
+  //   $('.header-type').removeClass('linked-article');
+  //   $(".back-linked").fadeOut(500);
+  //   pageType = "";
+  // } else {
+  //   //Remove the current value if equals to current page id
+  //   if(currId == articleId) {
+  //     pageHistory.pop();
+  //
+  //   }
+  // }
+  //
+  // if(articleId == 0) {
+  //   articleId = pageHistory.push(0);
+  //   $(".back").fadeOut(500);
+  //
+  // } else {
+  //   articleId = pageHistory.pop();
+  //   if(articleId == 0) {
+  //     $(".back").fadeOut(500);
+  //   }
+  // }
+
+  load_introArticle();
+
+  // alert('Current page ID is '+ currId +' Article ID is '+ articleId +' Page history now contains '+ pageHistory);
+
+});
 
 function load_introArticle() {
   $.ajax({
