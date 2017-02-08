@@ -4,14 +4,15 @@ var pageHistory = [0];
 var pageType = "";
 var buttonType = "";
 
-$("body").on("click",".btn-view-download",function(){
+$("body").on("click",".ajax-link",function(){
+
   articleId = $(this).data('id');
-  buttonType = 'view-download';
+  buttonType = "view-download";
   currId = articleId;
   pageType = "linked";
-  $('.header-type').addClass('linked-article');
-  $(".back-linked").fadeIn(500);
-  load_introArticle();
+  // $('.header-type').addClass('linked-article');
+  // $(".back-linked").fadeIn(500);
+  // load_introArticle();
 });
 
 $("body").on("click",".back",function(){
