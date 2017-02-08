@@ -133,6 +133,7 @@ header#main-header {
 }
 #reading-list {
   @include admin-sticky-fix;
+  @include transition;
   height: 100vh;
   overflow: scroll;
   width: 350px;

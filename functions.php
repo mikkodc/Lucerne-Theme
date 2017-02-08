@@ -121,8 +121,7 @@ function lucerne_scripts() {
 
 	//Enqueue Custom Scripts
 	wp_enqueue_script( 'custom-script', get_template_directory_uri() . '/library/dist/js/all.min.js', array(), '1', true );
-	// wp_enqueue_script( 'intro-script', get_template_directory_uri() . '/library/dist/js/introArticle.js', array(), '1', true );
-	wp_enqueue_script( 'linked-script', get_template_directory_uri() . '/library/dist/js/linkedArticle.js', array(), '1', true );
+	wp_enqueue_script( 'intro-script', get_template_directory_uri() . '/library/dist/js/introArticle.js', array(), '1', true );
 	wp_enqueue_script( 'load-script', get_template_directory_uri() . '/library/dist/js/infiniteLoad.js', array(), '1', true );
 	wp_enqueue_script( 'search-script', get_template_directory_uri() . '/library/dist/js/searchFilter.js', array(), '1', true );
 	wp_enqueue_script( 'reading-list-script', get_template_directory_uri() . '/library/dist/js/readingList.js', array(), '1', true );
@@ -236,7 +235,7 @@ add_action('wp_logout','logout_page');
 // 	}
 // }
 
-// add_action( 'template_redirect', 'redirect_non_logged_users_to_specific_page' );
+add_action( 'template_redirect', 'redirect_non_logged_users_to_specific_page' );
 
 add_action( 'init', 'blockusers_init' );
 function blockusers_init() {
@@ -261,12 +260,12 @@ function redirect_homepage_register() {
  *
  */
 
-function set_newuser_cookie() {
-	if ( !is_admin() && !isset($_COOKIE['count'])) {
-		setcookie( 'count', 0, time()+3600*24*100, COOKIEPATH, COOKIE_DOMAIN, false);
-	}
-}
-add_action( 'init', 'set_newuser_cookie');
+// function set_newuser_cookie() {
+// 	if ( !is_admin() && !isset($_COOKIE['cookie'])) {
+// 		setcookie( 'cookie', 0, time()+3600*24*100, COOKIEPATH, COOKIE_DOMAIN, false);
+// 	}
+// }
+// add_action( 'init', 'set_newuser_cookie');
 
 require_once( get_template_directory() . '/inc/dashboard-reporting.php');
 

@@ -5,7 +5,7 @@ var pageType = "";
 var buttonType = "";
 
 $("body").on("click",".btn-view-download",function(){
-  buttonType = "view-download";
+  // articleID = $(this).
   load_introArticle();
 });
 

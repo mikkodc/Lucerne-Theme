@@ -19,9 +19,13 @@ class introArticle {
 
 	public function intro_article() {
 
+		$post_id = $_GET['article'];
+		$queried_post = get_post($post_id);
+	  $current_article = $queried_post->ID;
+
 		// get_template_part( 'template-parts/content-linked' );
 
-		echo "Hello";
+		echo '<iframe src="'. the_field("article_link", $current_article) .'" class="linked-frame"></iframe>';
 
 		die();
 

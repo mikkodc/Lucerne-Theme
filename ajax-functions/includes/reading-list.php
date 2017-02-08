@@ -106,7 +106,7 @@ class readingList {
   		foreach ($currentReadList as $readList) {
   			$articleQuery = get_post($readList); ?>
   		  <div class="item-container clearfix" data-id="<?php echo $articleQuery->ID ?>">
-  		    <div class="col-xs-9 article-item">
+  		    <div class="col-xs-10 article-item">
   		      <a class="ajax-link" data-id="<?php echo $articleQuery->ID ?>">
   		        <img src="<?php echo get_the_post_thumbnail_url($articleQuery->ID, 'article-thumb'); ?>" alt="" class="img-responsive">
   		        <div class="meta-overlay">
@@ -117,8 +117,8 @@ class readingList {
   		      </a>
   		      <h4 class="article-title"><a class="ajax-link" data-id="<?php echo $articleQuery->ID ?>"><?php echo $articleQuery->post_title; ?></a></h4>
   		    </div>
-  		    <div class="col-xs-3 remove-item">
-  		      <a href="#" data-id="<?php echo $articleQuery->ID ?>" class="remove-to-list">Remove</a>
+  		    <div class="col-xs-2 remove-item">
+  		      <a href="#" data-id="<?php echo $articleQuery->ID ?>" class="remove-to-list"><span class="glyphicon glyphicon-remove"></span></a>
   		    </div>
   			</div>
   		<?php }
