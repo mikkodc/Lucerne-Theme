@@ -28,6 +28,21 @@ function setPostVisits($postID) {
   }else{
       $count++;
       update_post_meta($postID, $count_key, $count);
+
+    	$user_inserted = wp_get_current_user();
+
+    	global $wpdb;
+    	$table = $wpdb->prefix . "reporting";
+
+    	$user = $user->ID;
+    	$wpdb->insert(
+    			$table,
+    			array(
+    					'user_id' => $user_inserted->ID,
+    					'post_id' => $postID,
+    					'visited_at' => date('Y-m-d H:i:s')
+    			)
+    	);
   }
 }
 
@@ -53,10 +68,42 @@ function setPostViews($postID) {
   }else{
       $count++;
       update_post_meta($postID, $count_key, $count);
+
+    	$user_inserted = wp_get_current_user();
+
+      checkReport($user_inserted, $postID);
+
+    	global $wpdb;
+    	$table = $wpdb->prefix . "reporting";
+
+    	$user = $user->ID;
+    	$wpdb->insert(
+    			$table,
+    			array(
+    					'user_id' => $user_inserted->ID,
+    					'post_id' => $postID,
+    					'viewed_at' => date('Y-m-d H:i:s')
+    			)
+    	);
   }
 }
 // Remove issues with prefetching adding extra views
 remove_action( 'wp_head', 'adjacent_posts_rel_link_wp_head', 10, 0);
+
+//Check if user and post_id exists
+function checkReport($user_inserted, $postID) {
+
+  $checkifonreadinglist = $wpdb->get_var(
+    "
+    SELECT count(id)
+    FROM wp_reading_list
+    WHERE user_id = '".$user_inserted. "'
+      AND post_id = '".$postID."'
+    "
+  );
+
+  var_dump($checkifonreadinglist);
+}
 
 //Function for Displaying Reports
 function displayReports($q) { ?>
@@ -144,12 +191,11 @@ function val_sort($array,$key) {
 	return $newArray;
 }
 
-
-
 include( get_template_directory() . '/inc/widget-reporting/last-login.php');
 include( get_template_directory() . '/inc/widget-reporting/last-viewed-widget.php');
 include( get_template_directory() . '/inc/widget-reporting/last-visited-widget.php');
 include( get_template_directory() . '/inc/widget-reporting/popular-category.php');
 include( get_template_directory() . '/inc/widget-reporting/popular-author.php');
+include( get_template_directory() . '/inc/widget-reporting/view-clients.php');
 
 ?>

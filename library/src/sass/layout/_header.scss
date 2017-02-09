@@ -1,3 +1,8 @@
+.home {
+  .back {
+    display: none!important;
+  }
+}
 .top-bar {
   background-color: #304055;
   padding: 10px 0;
@@ -43,7 +48,6 @@ header#main-header {
   margin-bottom: 3px;
 
   .back {
-    display: none;
     cursor: pointer;
     color: $color__white;
     font-size: 14px;

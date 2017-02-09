@@ -1,5 +1,14 @@
 $(document).ready(function(){
 
+  //Back Button
+  $('.back').click(function(){
+    goBack()
+  });
+
+  function goBack() {
+    window.history.go(-1);
+  }
+
   //Sliding Reading List
   $(".reading-link").click(function(){
     $("#reading-list").removeClass("close");
