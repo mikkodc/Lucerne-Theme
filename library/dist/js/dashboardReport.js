@@ -1,10 +1,10 @@
-clientID = 0;
-
-jQuery("body").on("click",".select-users a",function(){
-  clientID = jQuery(this).data('id');
-
-  change_values();
-});
+// clientID = 0;
+//
+// jQuery("body").on("click",".select-users a",function(){
+//   clientID = jQuery(this).data('id');
+//
+//   change_values();
+// });
 // var articleId;
 // var currId;
 // var pageHistory = [0];
@@ -91,34 +91,34 @@ jQuery("body").on("click",".select-users a",function(){
 //
 // });
 //
-function change_values() {
-  jQuery.ajax({
-    type: "get",
-    data: {
-      'action': 'my_action',
-      client: clientID,
-    },
-    dataType: "html",
-    beforeSend : function(){
-
-      //Slide to Top
-      jQuery("html, body").animate({ scrollTop: 0 }, "slow");
-
-      //Empty the container and append loading gif
-      jQuery('#ajax-container').empty();
-      // jQuery('#ajax-container').append('<img src="'+ templateDir +'/library/src/img/ajax-loader.gif" class="preload-gif" alt="preloader">');
-
-    },
-    success:function(data) {
-
-      //Append data and remove the loading gif
-      // jQuery(data).hide().appendTo('#ajax-container').fadeIn(500).css('display', 'block');
-      // jQuery('#ajax-container .preload-gif').fadeOut(500).remove();
-
-      console.log(data);
-    },
-    error: function(errorThrown){
-      console.log(errorThrown);
-    }
-  });
-};
+// function change_values() {
+//   jQuery.ajax({
+//     type: "get",
+//     data: {
+//       'action': 'my_action',
+//       client: clientID,
+//     },
+//     dataType: "html",
+//     beforeSend : function(){
+//
+//       //Slide to Top
+//       jQuery("html, body").animate({ scrollTop: 0 }, "slow");
+//
+//       //Empty the container and append loading gif
+//       jQuery('#ajax-container').empty();
+//       // jQuery('#ajax-container').append('<img src="'+ templateDir +'/library/src/img/ajax-loader.gif" class="preload-gif" alt="preloader">');
+//
+//     },
+//     success:function(data) {
+//
+//       //Append data and remove the loading gif
+//       // jQuery(data).hide().appendTo('#ajax-container').fadeIn(500).css('display', 'block');
+//       // jQuery('#ajax-container .preload-gif').fadeOut(500).remove();
+//
+//       console.log(data);
+//     },
+//     error: function(errorThrown){
+//       console.log(errorThrown);
+//     }
+//   });
+// };
