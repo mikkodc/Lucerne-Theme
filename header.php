@@ -71,7 +71,9 @@
 				<div class="container">
 					<div class="row">
 						<div class="col-xs-4 col-md-4 text-left">
-							<a class="back back-ajax"><span class="glyphicon glyphicon-chevron-left"></span><span class="hidden-xs">BACK</span></a>
+							<?php if(is_single()) { ?>
+								<a class="back back-ajax"><span class="glyphicon glyphicon-chevron-left"></span><span class="hidden-xs">BACK</span></a>
+								<?php } ?>
 						</div>
 						<div class="col-xs-4 col-md-4">
 							<h1><a href="<?php bloginfo('url') ?>">Investor Library</a></h1>
