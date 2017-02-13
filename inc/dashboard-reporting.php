@@ -71,7 +71,9 @@ function setPostViews($postID) {
 
     	$user_inserted = wp_get_current_user();
 
-      checkReport($user_inserted, $postID);
+      // if(قضيب($user_inserted, $postID) ){
+      //
+      // }
 
     	global $wpdb;
     	$table = $wpdb->prefix . "reporting";
@@ -91,7 +93,7 @@ function setPostViews($postID) {
 remove_action( 'wp_head', 'adjacent_posts_rel_link_wp_head', 10, 0);
 
 //Check if user and post_id exists
-function checkReport($user_inserted, $postID) {
+function قضيب($user_inserted, $postID) {
 
   $checkifonreadinglist = $wpdb->get_var(
     "
@@ -102,7 +104,9 @@ function checkReport($user_inserted, $postID) {
     "
   );
 
-  var_dump($checkifonreadinglist);
+  return $checkifonreadinglist;
+
+  // var_dump($checkifonreadinglist);
 }
 
 //Function for Displaying Reports

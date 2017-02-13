@@ -140,34 +140,11 @@ function lucerne_scripts() {
 }
 add_action( 'wp_enqueue_scripts', 'lucerne_scripts' );
 
-function load_custom_wp_admin_style() {
-  wp_register_script( 'dashboard-scripts', get_template_directory_uri() . '/library/dist/js/dashboardReport.js', array('jquery'), '1', true );
-  wp_enqueue_script( 'dashboard-scripts' );
-
-	wp_register_style( 'dashboard-style', get_template_directory_uri() . '/library/dist/styles/dashboard-report.css', false, '1.0.0' );
-  wp_enqueue_style( 'dashboard-style' );
-}
-add_action( 'admin_enqueue_scripts', 'load_custom_wp_admin_style' );
-
 /**
  * Include Ajax Functionalities
  */
 
 @include('ajax-functions/ajax-object.php');
-
-function my_action_callback() {
-
-	$clients = $_GET['client'];
-
-	$user = get_user_by($clients);
-
-	var_dump($user);
-
-	// echo '<li>' . $user->display_name.' ['.$user->user_email.']</li>';
-
-  die();
-}
-add_action( 'wp_ajax_my_action', 'my_action_callback' );
 
 /**
  * Add new fields into 'Contact Info' section.
