@@ -1,8 +1,13 @@
+function toggleFilter() {
+  $('#filter-btn').children('span').toggleClass('glyphicon glyphicon-triangle-bottom glyphicon glyphicon-triangle-top');
+  $('.cat-bar .row > ul').slideToggle(300);
+}
+
 $(document).ready(function(){
 
   //Back Button
   $('.back').click(function(){
-    goBack()
+    goBack();
   });
 
   function goBack() {
@@ -31,6 +36,7 @@ $(document).ready(function(){
 
   //jQuery Media Queries
   if($(window).width() < 767) {
+    
     //Filter Toggle
     $('#filter-btn').click(function(){
       toggleFilter();
@@ -62,27 +68,8 @@ $(document).ready(function(){
       toggleFilter();
     });
 
-    // $('.cat-bar li').each(function(){
-    //   $(this).children('a').click(function(){
-    //     if($(this).siblings().find('span').hasClass('minus')) {
-    //       alert('test');
-    //     }
-    //   });
-    //   // if($(this).siblings('span').hasClass('minus')) {
-    //   //   $(this).siblings('span').removeClass('minus').addClass('add');
-    //   //   $(this).siblings('ul').slideToggle(300);
-    //   // }
-    //
-    //   toggleFilter();
-    // });
-
-    function toggleFilter() {
-      $('#filter-btn').children('span').toggleClass('glyphicon glyphicon-triangle-bottom glyphicon glyphicon-triangle-top');
-      $('.cat-bar .row > ul').slideToggle(300);
-    }
   } else {
     $(".cat-bar").removeClass("mobile-bar");
   }
-
 
 });

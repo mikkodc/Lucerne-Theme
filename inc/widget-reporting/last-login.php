@@ -2,7 +2,10 @@
 
 // Inserts Custom Meta value of Time on User Login
 function add_login_date( $user_login, $user ) {
-    update_user_meta( $user->ID, 'last_login', time() );
+  $login_log = array();
+  $curr_timelog = time();
+  array_push($login_log, $curr_timelog);
+  update_user_meta( $user->ID, 'last_login', $login_log );
 }
 add_action('wp_login', 'add_login_date', 10, 2);
 

@@ -28,7 +28,60 @@ if($type == "linked") {
       </div>
       <div class="col-md-4 hidden-xs hidden-sm small article-thumb">
         <h2 class="section-title">
-          Related Articles <?php //echo getPostVisits($post_id); echo getPostViews($post_id); ?>
+          Related Articles
+          <?php
+          $user_inserted = wp_get_current_user();
+          $current_user_id = $user_inserted->ID;
+
+          global $wpdb;
+          $loginTime = $wpdb->get_results(
+            "
+            SELECT *
+            FROM wp_loginlog
+            WHERE user_id = '". $current_user_id ."'
+            "
+          );
+
+          $table = $wpdb->prefix . "loginlog";
+          $evalArray[] = $loginTime[0]->login_log;
+          $evalArray[] = datetime();
+
+          $input = array(
+           array(
+            'as' => 'asd'
+           ),
+           array(
+            'as' => 'asd'
+           )
+          );
+
+          echo implode(', ', array_map(function ($entry) {
+            //  var_dump($entry);
+           return $entry['as'];
+          }, $input));
+          // array_push($evalArray, datetime());
+
+          print_r($evalArray);
+
+          if($loginTime) {
+
+            $loginLog = $wpdb->update(
+        			$table,
+              array(
+            		'login_log' => $a,
+            	),
+            	array( 'user_id' => $current_user_id ),
+              array('%s')
+          	);
+
+          }
+
+          // $a = array();
+          // array_push($a,"blue","yellow");
+          echo "<pre>";
+          print_r($loginTime);
+          echo "</pre>";
+          ?>
         </h2>
         <?php
         $args = array(

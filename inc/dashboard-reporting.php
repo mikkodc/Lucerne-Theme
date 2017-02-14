@@ -22,27 +22,38 @@ function setPostVisits($postID) {
   $count_key = 'post_visits_count';
   $count = get_post_meta($postID, $count_key, true);
   if($count==''){
-      $count = 1;
-      delete_post_meta($postID, $count_key);
-      add_post_meta($postID, $count_key, '1');
+    $count = 1;
+    delete_post_meta($postID, $count_key);
+    add_post_meta($postID, $count_key, '1');
   }else{
-      $count++;
-      update_post_meta($postID, $count_key, $count);
+    $count++;
+    update_post_meta($postID, $count_key, $count);
 
-    	$user_inserted = wp_get_current_user();
+  	$user_inserted = wp_get_current_user();
 
-    	global $wpdb;
-    	$table = $wpdb->prefix . "reporting";
+  	global $wpdb;
+  	$table = $wpdb->prefix . "reporting";
 
-    	$user = $user->ID;
-    	$wpdb->insert(
-    			$table,
-    			array(
-    					'user_id' => $user_inserted->ID,
-    					'post_id' => $postID,
-    					'visited_at' => date('Y-m-d H:i:s')
-    			)
+  	$user = $user_inserted->ID;
+    if(checkExist($user, $postID) >= 1) {
+      $wpdb->update(
+  			$table,
+        array(
+      		'visited_at' => current_time( 'mysql' ),
+      	),
+      	array( 'post_id' => $postID ),
+        array('%s')
     	);
+    } else {
+      $wpdb->insert(
+  			$table,
+  			array(
+					'user_id' => $user,
+					'post_id' => $postID,
+					'visited_at' => current_time( 'mysql' )
+  			)
+    	);
+    }
   }
 }
 
@@ -62,51 +73,58 @@ function setPostViews($postID) {
   $count_key = 'post_views_count';
   $count = get_post_meta($postID, $count_key, true);
   if($count==''){
-      $count = 1;
-      delete_post_meta($postID, $count_key);
-      add_post_meta($postID, $count_key, '1');
-  }else{
-      $count++;
-      update_post_meta($postID, $count_key, $count);
+    $count = 1;
+    delete_post_meta($postID, $count_key);
+    add_post_meta($postID, $count_key, '1');
+  } else{
+    $count++;
+    update_post_meta($postID, $count_key, $count);
 
-    	$user_inserted = wp_get_current_user();
+  	$user_inserted = wp_get_current_user();
 
-      // if(قضيب($user_inserted, $postID) ){
-      //
-      // }
+    global $wpdb;
+  	$table = $wpdb->prefix . "reporting";
 
-    	global $wpdb;
-    	$table = $wpdb->prefix . "reporting";
+  	$user = $user_inserted->ID;
 
-    	$user = $user->ID;
-    	$wpdb->insert(
-    			$table,
-    			array(
-    					'user_id' => $user_inserted->ID,
-    					'post_id' => $postID,
-    					'viewed_at' => date('Y-m-d H:i:s')
-    			)
+    if(checkExist($user, $postID) >= 1) {
+      $wpdb->update(
+  			$table,
+        array(
+      		'viewed_at' => current_time( 'mysql' ),
+      	),
+      	array( 'post_id' => $postID ),
+        array('%s')
     	);
+    } else {
+      $wpdb->insert(
+  			$table,
+  			array(
+					'user_id' => $user,
+					'post_id' => $postID,
+					'viewed_at' => current_time( 'mysql' )
+  			)
+    	);
+    }
   }
 }
 // Remove issues with prefetching adding extra views
 remove_action( 'wp_head', 'adjacent_posts_rel_link_wp_head', 10, 0);
 
 //Check if user and post_id exists
-function قضيب($user_inserted, $postID) {
+function checkExist($user, $postID) {
+  global $wpdb;
 
-  $checkifonreadinglist = $wpdb->get_var(
+  $checkexist = $wpdb->get_var(
     "
     SELECT count(id)
-    FROM wp_reading_list
-    WHERE user_id = '".$user_inserted. "'
+    FROM wp_reporting
+    WHERE user_id = '".$user. "'
       AND post_id = '".$postID."'
     "
   );
 
-  return $checkifonreadinglist;
-
-  // var_dump($checkifonreadinglist);
+  return $checkexist;
 }
 
 //Function for Displaying Reports
@@ -200,6 +218,5 @@ include( get_template_directory() . '/inc/widget-reporting/last-viewed-widget.ph
 include( get_template_directory() . '/inc/widget-reporting/last-visited-widget.php');
 include( get_template_directory() . '/inc/widget-reporting/popular-category.php');
 include( get_template_directory() . '/inc/widget-reporting/popular-author.php');
-include( get_template_directory() . '/inc/widget-reporting/view-clients.php');
 
 ?>
