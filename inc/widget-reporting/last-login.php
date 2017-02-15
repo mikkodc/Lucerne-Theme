@@ -2,10 +2,46 @@
 
 // Inserts Custom Meta value of Time on User Login
 function add_login_date( $user_login, $user ) {
-  $login_log = array();
-  $curr_timelog = time();
-  array_push($login_log, $curr_timelog);
-  update_user_meta( $user->ID, 'last_login', $login_log );
+
+  global $wpdb;
+  $loginTime = $wpdb->get_results(
+    "
+    SELECT *
+    FROM wp_loginlog
+    WHERE user_id = '". $user->ID ."'
+    "
+  );
+
+  $table = $wpdb->prefix . "loginlog";
+  $explodedVal = explode(",", $loginTime[0]->login_log);
+  $explodedVal[] = date('Y-m-d h:i:s');
+
+  if(sizeof($explodedVal) > 5) {
+    array_shift($explodedVal);
+  }
+
+  $implodedVal = implode(',', $explodedVal);
+
+  if($loginTime) {
+    $loginLog = $wpdb->update(
+      $table,
+      array(
+        'login_log' => $implodedVal,
+      ),
+      array( 'user_id' => $user->ID ),
+      array('%s')
+    );
+  } else {
+    $wpdb->insert(
+      $table,
+      array(
+        'user_id' => $user->ID,
+        'login_log' => current_time( 'mysql' )
+      )
+    );
+  }
+  // update_user_meta( $user->ID, 'last_login', time() );
+  update_user_meta( $user->ID, 'last_login', current_time( 'mysql' ) );
 }
 add_action('wp_login', 'add_login_date', 10, 2);
 
@@ -42,10 +78,6 @@ function fb_list_authors() {
       echo "<li>" .$authors['user_fullname']. " - " . $last_login . "</li>";
     }
   }
-
-  // echo "<pre>";
-  // print_r($sorted);
-  // echo "</pre>";
 
 }
 
