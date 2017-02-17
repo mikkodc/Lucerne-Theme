@@ -34,7 +34,7 @@ function Page () {
           }
       },
       error     : function(jqXHR, textStatus, errorThrown) {
-          alert(jqXHR + " :: " + textStatus + " :: " + errorThrown);
+          // alert(jqXHR + " :: " + textStatus + " :: " + errorThrown);
       }
     });
   }
