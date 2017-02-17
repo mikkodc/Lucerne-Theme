@@ -73,7 +73,7 @@ function fb_list_authors() {
   $sorted = val_sort($users, 'user_last_login');
 
   foreach ($sorted as $authors) {
-    $last_login = date("M d, Y H:i a", $authors['user_last_login']);
+    $last_login = date("M d, Y H:i a", strtotime($authors['user_last_login']));
     if($last_login != null) {
       echo "<li>" .$authors['user_fullname']. " - " . $last_login . "</li>";
     }
