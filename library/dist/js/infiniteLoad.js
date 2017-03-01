@@ -6,14 +6,21 @@ function Page () {
   loading = true;
   $window = $(window);
   $content = $(".load-more");
+  argType = "";
+
+  // if($('.cat-bar').click()) {
+  //   argType = "Category";
+  //   alert(argType);
+  // }
 
   this.loadPosts = function loadPosts(arg) {
     if(typeof arg != "undefined") {
       self.pageNum = arg;
     }
+
     $.ajax({
       type       : "GET",
-      data       : {numPosts : 3, pageNumber: self.pageNum},
+      data       : {numPosts : 3, pageNumber: self.pageNum, argType: argType},
       dataType   : "html",
       url        : templateDir+"/loopHandler.php",
       beforeSend : function(){
@@ -38,4 +45,20 @@ function Page () {
       }
     });
   }
+}
+
+var init = new Page();
+var events = new Events();
+init.loadPosts();
+
+function Events () {
+  $window.scroll(function() {
+    var content_offset = $content.offset();
+    if(!loading && ($window.scrollTop() +
+      $window.height()) > ($content.scrollTop() +
+      $content.height() + content_offset.top)) {
+        loading = true;
+        init.loadPosts();
+    }
+  });
 }

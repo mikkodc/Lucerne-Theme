@@ -29,6 +29,7 @@ if($type == "linked") {
       <div class="col-md-4 hidden-xs hidden-sm small article-thumb">
         <h2 class="section-title">
           Related Articles
+          <?php //get_search_form(); ?>
         </h2>
         <?php
         $args = array(
@@ -49,7 +50,8 @@ if($type == "linked") {
                   if($author_name) {
                     echo $author_name;
                   } else {
-                    echo mysql2date('j F, Y', $queries->post_date);
+                    $article_date = date_create(get_field('article_date', $queries->ID));
+                    echo date_format($article_date, 'j F, Y');
                   } ?>
               </div>
             </div>
@@ -68,8 +70,15 @@ if($type == "linked") {
           <h2 class="section-title"><?php echo $queried_post->post_title ?></h2>
 
           <div class="post-meta">
+            <div class="meta-author-name">
+              <?php $post_object = get_field('assign_staff_member', $queried_post);
+              $staff_name = $post_object->post_title;
+              echo 'by <b>' .$staff_name. '</b>'; ?>
+            </div>
             <div class="meta-date">
-              <?php echo mysql2date('j F, Y', $queried_post->post_date);?>
+              <?php //echo mysql2date('j F, Y', $queried_post->post_date);?>
+              <?php $article_date = date_create(get_field('article_date', $queried_post));
+              echo date_format($article_date, 'j F, Y'); ?>
             </div>
 
             <!-- Start Post Tags -->
@@ -178,7 +187,8 @@ if($type == "linked") {
                         if($author_name) {
                           echo $author_name;
                         } else {
-                          echo mysql2date('j F, Y', $artQueries->post_date);
+                          $article_date = date_create(get_field('article_date', $artQueries->ID));
+                          echo date_format($article_date, 'j F, Y');
                         } ?>
                     </div>
                   </div>
@@ -212,7 +222,8 @@ if($type == "linked") {
               <img src="<?php echo get_the_post_thumbnail_url($queries->ID); ?>" alt="" class="img-responsive">
               <div class="meta-overlay">
                 <div class="meta-date">
-                  <?php echo mysql2date('j F, Y', $queries->post_date); ?>
+                  <?php $article_date = date_create(get_field('article_date', $queries->ID));
+                  echo date_format($article_date, 'j F, Y'); ?>
                 </div>
               </div>
               </a>

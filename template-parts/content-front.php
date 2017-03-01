@@ -33,10 +33,11 @@
                 <div class="meta-date">
                   <?php
                     $author_name = get_field('author_name', get_the_ID());
+                    $article_date = date_create(get_field('article_date', get_the_ID()));
                     if($author_name) {
                       echo $author_name;
                     } else {
-                      the_time('F j, Y');
+                      echo date_format($article_date, 'j F, Y');
                     } ?>
                 </div>
               </div>

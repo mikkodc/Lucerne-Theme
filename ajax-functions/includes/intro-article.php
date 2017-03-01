@@ -38,9 +38,6 @@ class introArticle {
 		$post_id = $_GET['article'];
 		setPostViews($post_id); ?>
 		<h2><?php echo $post_id = $_GET['article']; ?></h2>
-		<script>
-			alert('test');
-		</script>
 
 		<?php die();
 

@@ -122,10 +122,11 @@ function lucerne_scripts() {
 	//Enqueue Custom Scripts
 	wp_enqueue_script( 'custom-script', get_template_directory_uri() . '/library/dist/js/all.min.js', array(), '1', true );
 	wp_enqueue_script( 'intro-script', get_template_directory_uri() . '/library/dist/js/linkedArticle.js', array(), '1', true );
-	wp_enqueue_script( 'load-script', get_template_directory_uri() . '/library/dist/js/infiniteLoad.js', array(), '1', true );
 	wp_enqueue_script( 'search-script', get_template_directory_uri() . '/library/dist/js/searchFilter.js', array(), '1', true );
 	wp_enqueue_script( 'reading-list-script', get_template_directory_uri() . '/library/dist/js/readingList.js', array(), '1', true );
-	wp_enqueue_script( 'ajax-script', get_template_directory_uri() . '/library/dist/js/global-ajax.js', array(), '1', true );
+
+	if(is_front_page())
+	wp_enqueue_script( 'load-script', get_template_directory_uri() . '/library/dist/js/infiniteLoad.js', array(), '1', true );
 
 	//Enqueue Ajax
 	wp_localize_script( 'custom-script', 'ajax_object', array( 'ajax_url' => admin_url( 'admin-ajax.php' ), 'tempateUrl' => get_stylesheet_directory_uri() ) );
