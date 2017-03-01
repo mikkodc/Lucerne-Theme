@@ -74,7 +74,7 @@ if($type == "linked") {
               <?php $post_object = get_field('assign_staff_member', $queried_post);
               echo 'by <b>';
               if($post_object) {
-                $staff_name = $post_object->post_title;
+                echo $staff_name = $post_object->post_title;
               } else {
                 echo the_author_meta('user_firstname', $queried_post->post_author);
                 echo " ";
