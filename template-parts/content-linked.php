@@ -72,8 +72,15 @@ if($type == "linked") {
           <div class="post-meta">
             <div class="meta-author-name">
               <?php $post_object = get_field('assign_staff_member', $queried_post);
-              $staff_name = $post_object->post_title;
-              echo 'by <b>' .$staff_name. '</b>'; ?>
+              echo 'by <b>';
+              if($post_object) {
+                $staff_name = $post_object->post_title;
+              } else {
+                echo the_author_meta('user_firstname', $queried_post->post_author);
+                echo " ";
+                echo the_author_meta('user_lastname', $queried_post->post_author);
+              }
+              echo '</b>';?>
             </div>
             <div class="meta-date">
               <?php //echo mysql2date('j F, Y', $queried_post->post_date);?>
