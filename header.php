@@ -62,7 +62,7 @@
 					</div>
 					<div class="col-xs-8 col-md-4">
 						<a href="http://www.lucernepartners.com">
-							<img src="<?php echo bloginfo('template_directory'); ?>/library/src/img/Lucerne-Logo-Top120.png" alt="">
+							<img src="<?php echo bloginfo('template_directory'); ?>/library/src/img/Lucerne-Logo-Top120.png" alt="<?php echo bloginfo('name'); ?>">
 						</a>
 					</div>
 				</div>
