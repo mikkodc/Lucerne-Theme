@@ -6,7 +6,7 @@ function toggleFilter() {
 $(document).ready(function(){
 
   //Back Button
-  $('.back').click(function(){
+  $('.back-ajax').click(function(){
     goBack();
   });
 
@@ -36,7 +36,7 @@ $(document).ready(function(){
 
   //jQuery Media Queries
   if($(window).width() < 767) {
-    
+
     //Filter Toggle
     $('#filter-btn').click(function(){
       toggleFilter();
