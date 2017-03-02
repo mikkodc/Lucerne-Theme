@@ -42,7 +42,7 @@ if($type == "linked") {
         foreach($query as $queries) { ?>
           <?php //echo var_dump($queries); ?>
           <a href="<?php echo get_permalink($queries->ID); ?>">
-            <img src="<?php echo get_the_post_thumbnail_url($queries->ID); ?>" alt="" class="img-responsive">
+            <img src="<?php echo get_the_post_thumbnail_url($queries->ID); ?>" alt="<?php echo $queries->post_title; ?>" class="img-responsive">
             <div class="meta-overlay">
               <div class="meta-date">
                 <?php
@@ -71,10 +71,10 @@ if($type == "linked") {
 
           <div class="post-meta">
             <div class="meta-author-name">
-              <?php $post_object = get_field('assign_staff_member', $queried_post);
+              <?php $post_object = get_field('author_name', $queried_post);
               echo 'by <b>';
-              if($post_object) {
-                echo $staff_name = $post_object->post_title;
+              if($post_object != "") {
+                echo $post_object;
               } else {
                 echo the_author_meta('user_firstname', $queried_post->post_author);
                 echo " ";
@@ -186,7 +186,7 @@ if($type == "linked") {
             <?php foreach($articleQuery as $artQueries) { ?>
               <div class="col-sm-6 col-md-4 article-item">
                 <a href="<?php echo get_permalink($artQueries->ID); ?>">
-                  <img src="<?php echo get_the_post_thumbnail_url($artQueries->ID, 'article-thumb'); ?>" alt="" class="img-responsive">
+                  <img src="<?php echo get_the_post_thumbnail_url($artQueries->ID, 'article-thumb'); ?>" alt="<?php the_title(); ?>" class="img-responsive">
                   <div class="meta-overlay">
                     <div class="meta-date">
                       <?php
@@ -226,7 +226,7 @@ if($type == "linked") {
             <?php //echo var_dump($queries); ?>
             <div class="col-sm-6">
               <a href="">
-              <img src="<?php echo get_the_post_thumbnail_url($queries->ID); ?>" alt="" class="img-responsive">
+              <img src="<?php echo get_the_post_thumbnail_url($queries->ID); ?>" alt="<?php echo $queries->post_title; ?>" class="img-responsive">
               <div class="meta-overlay">
                 <div class="meta-date">
                   <?php $article_date = date_create(get_field('article_date', $queries->ID));

@@ -18,7 +18,6 @@ get_header(); ?>
   </div>
   <!-- End Ajax Container -->
 
-</div>
 <script>
   var templateDir = "<?php bloginfo('template_directory') ?>";
 </script>

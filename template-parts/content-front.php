@@ -27,7 +27,7 @@
 
           <div class="col-md-<?php echo $counter == 0 ? '8 large' : '4 small' ?>">
             <a href="<?php echo get_permalink($the_query->ID) ?>" data-id="<?php echo get_the_ID(); ?>">
-              <img src="<?php the_post_thumbnail_url(); ?>" alt="">
+              <img src="<?php the_post_thumbnail_url(); ?>" alt="<?php the_title(); ?>">
               <div class="meta-overlay">
                 <h2 class="meta-title"><?php the_title(); ?></h2>
                 <div class="meta-date">
@@ -63,7 +63,7 @@
 <div class="container-fluid cat-bar" data-spy="affix" data-offset-top="738">
   <div class="container">
     <div class="row">
-      <button type="button" class="btn btn-default" id="filter-btn" ></span>Filter <span class="glyphicon glyphicon-triangle-bottom"></button>
+      <button type="button" class="btn btn-default" id="filter-btn" >Filter <span class="glyphicon glyphicon-triangle-bottom"></span></button>
         <ul class="pull-left">
 
         <?php

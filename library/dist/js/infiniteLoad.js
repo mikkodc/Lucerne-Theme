@@ -8,11 +8,6 @@ function Page () {
   $content = $(".load-more");
   argType = "";
 
-  // if($('.cat-bar').click()) {
-  //   argType = "Category";
-  //   alert(argType);
-  // }
-
   this.loadPosts = function loadPosts(arg) {
     if(typeof arg != "undefined") {
       self.pageNum = arg;
@@ -52,6 +47,7 @@ var events = new Events();
 init.loadPosts();
 
 function Events () {
+
   $window.scroll(function() {
     var content_offset = $content.offset();
     if(!loading && ($window.scrollTop() +
@@ -61,4 +57,13 @@ function Events () {
         init.loadPosts();
     }
   });
+  
+  $(document).ready(function(){
+    $("body").on("click",".cat-bar ul li a",function(){
+      argType = $(this).data('term');
+      loading = true;
+      init.loadPosts();
+    });
+  });
+
 }

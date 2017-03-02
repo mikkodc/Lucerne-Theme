@@ -10,9 +10,10 @@ $category = (isset($_GET['filterCat'])) ? $_GET['filterCat'] : 0;
 
 //Post Arguments
 $args = array(
-  'post_type' => 'post',
+  'post_type'      => 'post',
   'posts_per_page' => 6,
   'paged'          => $page,
+  'cat'       => $category
 );
 
 //WP Query
