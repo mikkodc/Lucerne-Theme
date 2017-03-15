@@ -18,7 +18,8 @@
     "gulp-sourcemaps": "^1.9.1",
     "gulp-uglify": "^2.0.0",
     "gulp-util": "^3.0.7",
-    "gulp-watch": "^4.3.11"
+    "gulp-watch": "^4.3.11",
+    "jshint": "^2.9.4"
   },
   "name": "Lucerne",
   "description": "Lucerne Theme",
